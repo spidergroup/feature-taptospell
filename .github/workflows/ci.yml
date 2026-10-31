@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main, feature/taptospell]
+  pull_request:
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Validate Word Lists & Images
+        run: npm run validate:words
+      - name: Validate Sound Sets
+        run: npm run validate:sounds
+      - name: Apply local D1 migrations
+        run: npm run db:migrate:local
+      - name: Run Vitest Suite
+        run: npm test
+
