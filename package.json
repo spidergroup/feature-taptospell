@@ -12,18 +12,21 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "validate:words": "tsx scripts/validate-words.ts",
+    "validate:levels": "tsx scripts/validate-levels.ts",
     "validate:sounds": "tsx scripts/validate-sounds.ts",
     "generate:images": "tsx scripts/generate-images.ts"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.114.0",
     "@tanstack/react-start": "^1.114.0",
+    "canvas-confetti": "^1.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.7.0",
     "@cloudflare/workers-types": "^4.20250214.0",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

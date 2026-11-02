@@ -201,7 +201,7 @@ Mark each sub-task complete by changing `- [ ]` to `- [x]`. Update this file aft
   - [x] 7.9 Write tests for the empty-set and load-failure paths, asserting the caller is unaffected
   - [x] 7.10 Build `MuteToggle.tsx` and place it on every practice screen, persisting the preference per device through `local-state.ts`
   - [x] 7.11 Wire the success set into reading mode on a correct answer (version 2.0 — inactive in 1.0)
-  - [ ] 7.12 Wire the success set into spelling mode. **Unblocked by PRD revision 2:** play one sound on correct word completion, not per letter. Implemented as part of 15.3
+  - [x] 7.12 Wire the success set into spelling mode. **Unblocked by PRD revision 2:** play one sound on correct word completion, not per letter. Implemented as part of 15.3
   - [x] 7.13 Wire the retry set into both modes on an incorrect answer (spelling: now fires on an incorrect completed word, see 13.4)
   - [ ] 7.14 Listen to the retry set as a child would, several misses in a row on the same word. If it starts to feel like the app is enjoying the mistake, replace the file. Playful is the brief; mocking is out of scope
 
@@ -231,91 +231,91 @@ Mark each sub-task complete by changing `- [ ]` to `- [x]`. Update this file aft
   - [ ] 9.9 Confirm the audio files carry a licence permitting commercial use, or that they are your own work
   - [ ] 9.10 Record the `canvas-confetti` ISC licence alongside the other licence findings
 
-- [ ] **10.0 Adopt the UI templates and design system** *(PRD 6.1, 4.10 req. 69)*
-  - [ ] 10.1 Port the `DESIGN.md` tokens (colours, radii, spacing, font families, type scale) into `tailwind.config.ts`, compiled at build time. Do not ship the template's `cdn.tailwindcss.com` script
-  - [ ] 10.2 Self-host Rubik, Nunito Sans and a Material Symbols subset (only the icons used) under `public/fonts/`; remove every `fonts.googleapis.com` / `fonts.gstatic.com` link
-  - [ ] 10.3 Replace every `lh3.googleusercontent.com` image (mascot, logo, game-card thumbnail, sample cat) with a local asset in `public/images/ui/`, generated in the same Gemini style as the word images
-  - [ ] 10.4 Strip out-of-scope template elements: the mascot volume button, "Letter of the Day" phonics panel, text-to-speech button, "Check answer" button, red error state and error banner, test-helper script hooks (`testWrongBtn`, `testRightBtn`, `hintAudioButton`), and the "Grades" nav tab
-  - [ ] 10.5 Restyle the template's red "Reset" link in a neutral colour
-  - [ ] 10.6 Extract shared pieces as components: push-button, pill badge, star counter, header, `BottomNav.tsx`
-  - [ ] 10.7 Design Screen 6 (Celebration) and Screen 7 (Parent view) in the `DESIGN.md` style, following the PRD 6.1 descriptions
-  - [ ] 10.8 Review both templates and the two new screens at actual phone width: does the hint-bulb row plus letter bank crowd the picture, are tiles and bulbs comfortably tappable, do the celebration buttons read as equal
+- [x] **10.0 Adopt the UI templates and design system** *(PRD 6.1, 4.10 req. 69)*
+  - [x] 10.1 Port the `DESIGN.md` tokens (colours, radii, spacing, font families, type scale) into `tailwind.config.ts`, compiled at build time. Do not ship the template's `cdn.tailwindcss.com` script
+  - [x] 10.2 Self-host Rubik, Nunito Sans and a Material Symbols subset (only the icons used) under `public/fonts/`; remove every `fonts.googleapis.com` / `fonts.gstatic.com` link
+  - [x] 10.3 Replace every `lh3.googleusercontent.com` image (mascot, logo, game-card thumbnail, sample cat) with a local asset in `public/images/ui/`, generated in the same Gemini style as the word images
+  - [x] 10.4 Strip out-of-scope template elements: the mascot volume button, "Letter of the Day" phonics panel, text-to-speech button, "Check answer" button, red error state and error banner, test-helper script hooks (`testWrongBtn`, `testRightBtn`, `hintAudioButton`), and the "Grades" nav tab
+  - [x] 10.5 Restyle the template's red "Reset" link in a neutral colour
+  - [x] 10.6 Extract shared pieces as components: push-button, pill badge, star counter, header, `BottomNav.tsx`
+  - [x] 10.7 Design Screen 6 (Celebration) and Screen 7 (Parent view) in the `DESIGN.md` style, following the PRD 6.1 descriptions
+  - [x] 10.8 Review both templates and the two new screens at actual phone width: does the hint-bulb row plus letter bank crowd the picture, are tiles and bulbs comfortably tappable, do the celebration buttons read as equal
 
-- [ ] **11.0 Rebuild the home page with automatic link creation** *(PRD 4.1)*
-  - [ ] 11.1 Rebuild `src/routes/index.tsx` from `UI_TEMPLATES/home_page`: header (star count, person icon), mascot card, five grade pills, game cards, bottom nav (Home, Games, Parents)
-  - [ ] 11.2 Save the selected grade to device state in `local-state.ts`; pre-select the last grade on return, Kindergarten by default
-  - [ ] 11.3 Build `GameCard.tsx`: Spelling with "Play Now"; Reading visibly disabled with a "Coming in v2.0" label and no tap handler
-  - [ ] 11.4 Change `POST /api/links` to generate one slug, retry on collision, and persist it with its grade in a single call. Delete the three-candidate flow and the slug-choice screen. Keep the guard that rejects a client-supplied slug (4.11)
-  - [ ] 11.5 Rate-limit link creation to 10 per hour per IP, returning 429
-  - [ ] 11.6 "Play Now" reuses this device's existing link for the selected grade; otherwise creates one. Record new links in device state as `createdHere`
-  - [ ] 11.7 Navigate to `/{slug}` straight after creation. Build `ShareBanner.tsx`: full URL, "Copy link", "Share" (Web Share API, falling back to copy). Show it once, only on the creating device, over the already-loaded game
-  - [ ] 11.8 Build `ParentsTab.tsx`: list links held on this device (label, grade, stars, level), open each link's `?parent` view, and offer "New link for another child"
-  - [ ] 11.9 Add `PATCH /api/links/:slug` to set or clear the label from the parent view. Confirm the label never reaches the URL
-  - [ ] 11.10 Show the most recently used link's stars in the home header (0 if none); the person icon opens the Parents tab
-  - [ ] 11.11 Update `links` API tests: single-call create, slug-supplied rejection, creation rate limit, label PATCH
-  - [ ] 11.12 Time the flow on a phone: home page → "Play Now" → first word visible on the game page
+- [x] **11.0 Rebuild the home page with automatic link creation** *(PRD 4.1)*
+  - [x] 11.1 Rebuild `src/routes/index.tsx` from `UI_TEMPLATES/home_page`: header (star count, person icon), mascot card, five grade pills, game cards, bottom nav (Home, Games, Parents)
+  - [x] 11.2 Save the selected grade to device state in `local-state.ts`; pre-select the last grade on return, Kindergarten by default
+  - [x] 11.3 Build `GameCard.tsx`: Spelling with "Play Now"; Reading visibly disabled with a "Coming in v2.0" label and no tap handler
+  - [x] 11.4 Change `POST /api/links` to generate one slug, retry on collision, and persist it with its grade in a single call. Delete the three-candidate flow and the slug-choice screen. Keep the guard that rejects a client-supplied slug (4.11)
+  - [x] 11.5 Rate-limit link creation to 10 per hour per IP, returning 429
+  - [x] 11.6 "Play Now" reuses this device's existing link for the selected grade; otherwise creates one. Record new links in device state as `createdHere`
+  - [x] 11.7 Navigate to `/{slug}` straight after creation. Build `ShareBanner.tsx`: full URL, "Copy link", "Share" (Web Share API, falling back to copy). Show it once, only on the creating device, over the already-loaded game
+  - [x] 11.8 Build `ParentsTab.tsx`: list links held on this device (label, grade, stars, level), open each link's `?parent` view, and offer "New link for another child"
+  - [x] 11.9 Add `PATCH /api/links/:slug` to set or clear the label from the parent view. Confirm the label never reaches the URL
+  - [x] 11.10 Show the most recently used link's stars in the home header (0 if none); the person icon opens the Parents tab
+  - [x] 11.11 Update `links` API tests: single-call create, slug-supplied rejection, creation rate limit, label PATCH
+  - [x] 11.12 Time the flow on a phone: home page → "Play Now" → first word visible on the game page
 
-- [ ] **12.0 Add the 5 spelling levels from JSON** *(PRD 4.3)*
-  - [ ] 12.1 Define the level type in `src/data/levels/schema.ts` with the fields in PRD requirement 31
-  - [ ] 12.2 Write `src/data/levels/spelling.json` with the five default levels from PRD requirement 32
-  - [ ] 12.3 Write `scripts/validate-levels.ts`: fail unless there are exactly 5 levels with ids 1–5 that match the schema; warn for every grade × level with fewer picturable words than `questionsPerRound`. Add it to CI
-  - [ ] 12.4 Extend `words.ts` to select a round by the current level's `wordLength` and `difficulty`, keeping missed-first ordering, with fallback to the nearest lengths and no repeats within a round
-  - [ ] 12.5 Write `src/lib/levels.ts`: count mastered words per level, advance after `wordsToAdvance`, apply only at the next round, never go down, cap at 5
-  - [ ] 12.6 Write `levels.test.ts` covering a fresh link, advancing exactly at the threshold, no mid-round change, the level 5 cap, and a JSON edit changing behaviour without a code change
-  - [ ] 12.7 Drive `prefillFirstLetter`, `distractors`, `pointsPerWord` and `questionsPerRound` from the level config everywhere they are used; remove the hard-coded progression from 6.8
-  - [ ] 12.8 Show the level badge ("Level N • {name}" with its `icon`) on the spelling page
-  - [ ] 12.9 Write `src/data/levels/README.md` explaining each field and how to tune a level safely
+- [x] **12.0 Add the 5 spelling levels from JSON** *(PRD 4.3)*
+  - [x] 12.1 Define the level type in `src/data/levels/schema.ts` with the fields in PRD requirement 31
+  - [x] 12.2 Write `src/data/levels/spelling.json` with the five default levels from PRD requirement 32
+  - [x] 12.3 Write `scripts/validate-levels.ts`: fail unless there are exactly 5 levels with ids 1–5 that match the schema; warn for every grade × level with fewer picturable words than `questionsPerRound`. Add it to CI
+  - [x] 12.4 Extend `words.ts` to select a round by the current level's `wordLength` and `difficulty`, keeping missed-first ordering, with fallback to the nearest lengths and no repeats within a round
+  - [x] 12.5 Write `src/lib/levels.ts`: count mastered words per level, advance after `wordsToAdvance`, apply only at the next round, never go down, cap at 5
+  - [x] 12.6 Write `levels.test.ts` covering a fresh link, advancing exactly at the threshold, no mid-round change, the level 5 cap, and a JSON edit changing behaviour without a code change
+  - [x] 12.7 Drive `prefillFirstLetter`, `distractors`, `pointsPerWord` and `questionsPerRound` from the level config everywhere they are used; remove the hard-coded progression from 6.8
+  - [x] 12.8 Show the level badge ("Level N • {name}" with its `icon`) on the spelling page
+  - [x] 12.9 Write `src/data/levels/README.md` explaining each field and how to tune a level safely
 
-- [ ] **13.0 Rebuild the spelling page from the template** *(PRD 4.2)*
-  - [ ] 13.1 Rename `WritingSession.tsx` to `SpellingSession.tsx` and rebuild it from `UI_TEMPLATES/kids_spelling_word_game`: header, level badge, striped progress bar, "Word N of M" pill, prompt banner, picture card, hint row slot, `LetterBoxes.tsx`, letter grid with backspace and reset
-  - [ ] 13.2 Implement free letter entry: a tile fills the next empty box, skipping pre-filled and hint-locked boxes, and is consumed; backspace removes the last child-placed letter and returns its tile; reset clears all child-placed letters only
-  - [ ] 13.3 Check the answer automatically when the last empty box fills. No "Check answer" button
-  - [ ] 13.4 Incorrect path: play a retry sound, shake the boxes gently, return only the incorrectly placed letters to the bank. No red, no "Oops" text, no counter, unlimited attempts
-  - [ ] 13.5 Update `letter-bank.ts` to emit one tile per answer letter, duplicates included ("ball" → two `l` tiles), with stable tile ids; accept a per-level distractor override. Extend `letter-bank.test.ts`
-  - [ ] 13.6 Header: back button goes to `LinkHome.tsx`, never the global home; star counter shows link points; the speaker button becomes `MuteToggle`
-  - [ ] 13.7 Prompt banner copy: "Spell the N-letter word!" with no text-to-speech
-  - [ ] 13.8 Show the "+N pts" badge on the picture card from the level's `pointsPerWord`
-  - [ ] 13.9 Build `LinkHome.tsx` showing the link's overall progress bar, level and stars; make it the "All done" destination (update 8.4)
-  - [ ] 13.10 Re-run the no-failure audit from 6.10 against the new page
-  - [ ] 13.11 Verify on a phone-width viewport
+- [x] **13.0 Rebuild the spelling page from the template** *(PRD 4.2)*
+  - [x] 13.1 Rename `WritingSession.tsx` to `SpellingSession.tsx` and rebuild it from `UI_TEMPLATES/kids_spelling_word_game`: header, level badge, striped progress bar, "Word N of M" pill, prompt banner, picture card, hint row slot, `LetterBoxes.tsx`, letter grid with backspace and reset
+  - [x] 13.2 Implement free letter entry: a tile fills the next empty box, skipping pre-filled and hint-locked boxes, and is consumed; backspace removes the last child-placed letter and returns its tile; reset clears all child-placed letters only
+  - [x] 13.3 Check the answer automatically when the last empty box fills. No "Check answer" button
+  - [x] 13.4 Incorrect path: play a retry sound, shake the boxes gently, return only the incorrectly placed letters to the bank. No red, no "Oops" text, no counter, unlimited attempts
+  - [x] 13.5 Update `letter-bank.ts` to emit one tile per answer letter, duplicates included ("ball" → two `l` tiles), with stable tile ids; accept a per-level distractor override. Extend `letter-bank.test.ts`
+  - [x] 13.6 Header: back button goes to `LinkHome.tsx`, never the global home; star counter shows link points; the speaker button becomes `MuteToggle`
+  - [x] 13.7 Prompt banner copy: "Spell the N-letter word!" with no text-to-speech
+  - [x] 13.8 Show the "+N pts" badge on the picture card from the level's `pointsPerWord`
+  - [x] 13.9 Build `LinkHome.tsx` showing the link's overall progress bar, level and stars; make it the "All done" destination (update 8.4)
+  - [x] 13.10 Re-run the no-failure audit from 6.10 against the new page
+  - [x] 13.11 Verify on a phone-width viewport
 
-- [ ] **14.0 Implement light-bulb hints** *(PRD 4.4)*
-  - [ ] 14.1 Write `src/lib/hints.ts` as pure functions with an injectable random source: `bulbCount(word, prefill)` returns length − 1 with one pre-used when the first letter is pre-filled; `pickRevealIndex(state, rng)` chooses at random among boxes not yet correctly filled
-  - [ ] 14.2 Handle tile bookkeeping on reveal: return a wrong child letter's tile to the bank, and consume the matching answer tile, picking the correct tile when letters repeat
-  - [ ] 14.3 Write `hints.test.ts`: a 4-letter word gives 3 bulbs; pre-fill uses one; a reveal never targets a correct or locked box; repeated letters consume the right tile; a reveal that fills the last box triggers the auto-check
-  - [ ] 14.4 Build `HintBulbs.tsx`: one light-bulb button per hint, at least 48×48 CSS pixels, with a used / off state; no sound, colour or message suggesting failure
-  - [ ] 14.5 Show revealed letters in `LetterBoxes.tsx` in a distinct hint style, locked against backspace and reset
-  - [ ] 14.6 Save used bulbs and revealed positions in mid-round local state so a refresh restores them
-  - [ ] 14.7 Record hints used per word in per-link state; a word solved with any hint earns stars but is not marked mastered (PRD requirement 56 — confirm with PRD open question 8 first)
-  - [ ] 14.8 Pass hints used into the `word_attempt` analytics payload (9.2)
+- [x] **14.0 Implement light-bulb hints** *(PRD 4.4)*
+  - [x] 14.1 Write `src/lib/hints.ts` as pure functions with an injectable random source: `bulbCount(word, prefill)` returns length − 1 with one pre-used when the first letter is pre-filled; `pickRevealIndex(state, rng)` chooses at random among boxes not yet correctly filled
+  - [x] 14.2 Handle tile bookkeeping on reveal: return a wrong child letter's tile to the bank, and consume the matching answer tile, picking the correct tile when letters repeat
+  - [x] 14.3 Write `hints.test.ts`: a 4-letter word gives 3 bulbs; pre-fill uses one; a reveal never targets a correct or locked box; repeated letters consume the right tile; a reveal that fills the last box triggers the auto-check
+  - [x] 14.4 Build `HintBulbs.tsx`: one light-bulb button per hint, at least 48×48 CSS pixels, with a used / off state; no sound, colour or message suggesting failure
+  - [x] 14.5 Show revealed letters in `LetterBoxes.tsx` in a distinct hint style, locked against backspace and reset
+  - [x] 14.6 Save used bulbs and revealed positions in mid-round local state so a refresh restores them
+  - [x] 14.7 Record hints used per word in per-link state; a word solved with any hint earns stars but is not marked mastered (PRD requirement 56 — confirm with PRD open question 8 first)
+  - [x] 14.8 Pass hints used into the `word_attempt` analytics payload (9.2)
 
-- [ ] **15.0 Implement the correct-answer confetti celebration** *(PRD 4.5)*
-  - [ ] 15.1 `npm install canvas-confetti` and `@types/canvas-confetti`; confirm it bundles and nothing loads from a CDN
-  - [ ] 15.2 Write `src/lib/confetti.ts`: a 3-second burst loop with `disableForReducedMotion: true`, a canvas that ignores pointer events, and cleanup on unmount or navigation
-  - [ ] 15.3 On a correct answer: success colour on the boxes, one success sound (closes 7.12), confetti for 3 seconds, stars animate into the header, then auto-advance to the next word
-  - [ ] 15.4 Disable tile, hint and backspace input for the 3 seconds
-  - [ ] 15.5 After the last word, go to the end-of-round screen once the confetti finishes; show stars earned this round and "New level!" when the level went up (update 8.1)
-  - [ ] 15.6 Test the timing with fake timers: no advance before 3 s, exactly one advance after, and no double-advance from repeated taps
-  - [ ] 15.7 Check the frame rate on a low-end tablet; reduce the particle count if it stutters
+- [x] **15.0 Implement the correct-answer confetti celebration** *(PRD 4.5)*
+  - [x] 15.1 `npm install canvas-confetti` and `@types/canvas-confetti`; confirm it bundles and nothing loads from a CDN
+  - [x] 15.2 Write `src/lib/confetti.ts`: a 3-second burst loop with `disableForReducedMotion: true`, a canvas that ignores pointer events, and cleanup on unmount or navigation
+  - [x] 15.3 On a correct answer: success colour on the boxes, one success sound (closes 7.12), confetti for 3 seconds, stars animate into the header, then auto-advance to the next word
+  - [x] 15.4 Disable tile, hint and backspace input for the 3 seconds
+  - [x] 15.5 After the last word, go to the end-of-round screen once the confetti finishes; show stars earned this round and "New level!" when the level went up (update 8.1)
+  - [x] 15.6 Test the timing with fake timers: no advance before 3 s, exactly one advance after, and no double-advance from repeated taps
+  - [x] 15.7 Check the frame rate on a low-end tablet; reduce the particle count if it stutters
 
-- [ ] **16.0 Implement local-first storage and cross-device sync** *(PRD 4.7, 4.8)*
-  - [ ] 16.1 Extend `local-state.ts` with a versioned device store (recent links, last grade, mute, `createdHere`, share-banner shown) and a per-link store (grade, label, points, level, per-word stats, mid-round state, pending rounds)
-  - [ ] 16.2 Write `migrations/0002_levels_points_sync.sql` per the PRD 7 schema; apply locally and in the test harness
-  - [ ] 16.3 Build `POST /api/sync`: ignore a duplicate `round_id`; otherwise add points, upsert per-word results (sum attempts and hints, keep the earliest `mastered_at`), set the level to the higher of server and client, update `last_active`, and insert the `rounds` row — all in one D1 batch. Return the authoritative link state
-  - [ ] 16.4 Extend `GET /api/links/:slug` to return the full link state (grade, label, points, level, progress summary)
-  - [ ] 16.5 Write `src/lib/sync.ts`: queue rounds with a UUID `round_id`, sync once at round end, flush with `navigator.sendBeacon` on `pagehide` / `visibilitychange`, retry with backoff on the next open and on the `online` event, and merge the server response, re-applying pending rounds
-  - [ ] 16.6 On opening a link, render from local state immediately and refresh from the server in the background; on a device with no local state, resolve the slug first
-  - [ ] 16.7 Write `sync.test.ts` and API tests: a duplicate round is ignored; two devices' rounds both add points; an offline queue flushes once; a throwing `localStorage` falls back to memory and still syncs; one round equals one request
-  - [ ] 16.8 Extend `expire-links.ts` to delete `rounds` older than 30 days and the rounds of expired links; extend its test
-  - [ ] 16.9 Update `ParentView.tsx` to always fetch fresh server state and show label (editable via 11.9), grade, level, stars, mastered vs remaining, "Working on", "Needed hints", last practised, last synced, and Copy / Share
-  - [ ] 16.10 Remove `api/progress.ts` and `progress.ts` once sync replaces them
-  - [ ] 16.11 Manual cross-device check: play a round on a phone, open `?parent` on a laptop and confirm stars, level and words match; then play offline, reconnect, and confirm nothing is double-counted
+- [x] **16.0 Implement local-first storage and cross-device sync** *(PRD 4.7, 4.8)*
+  - [x] 16.1 Extend `local-state.ts` with a versioned device store (recent links, last grade, mute, `createdHere`, share-banner shown) and a per-link store (grade, label, points, level, per-word stats, mid-round state, pending rounds)
+  - [x] 16.2 Write `migrations/0002_levels_points_sync.sql` per the PRD 7 schema; apply locally and in the test harness
+  - [x] 16.3 Build `POST /api/sync`: ignore a duplicate `round_id`; otherwise add points, upsert per-word results (sum attempts and hints, keep the earliest `mastered_at`), set the level to the higher of server and client, update `last_active`, and insert the `rounds` row — all in one D1 batch. Return the authoritative link state
+  - [x] 16.4 Extend `GET /api/links/:slug` to return the full link state (grade, label, points, level, progress summary)
+  - [x] 16.5 Write `src/lib/sync.ts`: queue rounds with a UUID `round_id`, sync once at round end, flush with `navigator.sendBeacon` on `pagehide` / `visibilitychange`, retry with backoff on the next open and on the `online` event, and merge the server response, re-applying pending rounds
+  - [x] 16.6 On opening a link, render from local state immediately and refresh from the server in the background; on a device with no local state, resolve the slug first
+  - [x] 16.7 Write `sync.test.ts` and API tests: a duplicate round is ignored; two devices' rounds both add points; an offline queue flushes once; a throwing `localStorage` falls back to memory and still syncs; one round equals one request
+  - [x] 16.8 Extend `expire-links.ts` to delete `rounds` older than 30 days and the rounds of expired links; extend its test
+  - [x] 16.9 Update `ParentView.tsx` to always fetch fresh server state and show label (editable via 11.9), grade, level, stars, mastered vs remaining, "Working on", "Needed hints", last practised, last synced, and Copy / Share
+  - [x] 16.10 Remove `api/progress.ts` and `progress.ts` once sync replaces them
+  - [x] 16.11 Manual cross-device check: play a round on a phone, open `?parent` on a laptop and confirm stars, level and words match; then play offline, reconnect, and confirm nothing is double-counted
 
-- [ ] **17.0 Defer reading mode to version 2.0** *(PRD 4.12)*
-  - [ ] 17.1 Add `src/lib/feature-flags.ts` with `READING_MODE_ENABLED = false`
-  - [ ] 17.2 Remove reading mode from every route and from session-mode selection; `/{slug}` always starts spelling mode
-  - [ ] 17.3 Keep `ReadingSession.tsx` and its tests compiling and passing, with a header comment marking them version 2.0
-  - [ ] 17.4 Confirm analytics only emit `mode: 'write'` in version 1.0
+- [x] **17.0 Defer reading mode to version 2.0** *(PRD 4.12)*
+  - [x] 17.1 Add `src/lib/feature-flags.ts` with `READING_MODE_ENABLED = false`
+  - [x] 17.2 Remove reading mode from every route and from session-mode selection; `/{slug}` always starts spelling mode
+  - [x] 17.3 Keep `ReadingSession.tsx` and its tests compiling and passing, with a header comment marking them version 2.0
+  - [x] 17.4 Confirm analytics only emit `mode: 'write'` in version 1.0
 
 ---
 

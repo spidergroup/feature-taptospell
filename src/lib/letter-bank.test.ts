@@ -5,7 +5,7 @@ import {
   sortTilesAlphabetically,
 } from './letter-bank';
 
-describe('letter-bank.ts — scaled distractors and alphabetical sorting (Tasks 6.1–6.4)', () => {
+describe('letter-bank.ts — scaled distractors, duplicates, and alphabetical sorting (Tasks 6.1–6.4, 13.5)', () => {
   it('adds 4 distractors for 3–4 letter words with no distractor duplicating an answer letter', () => {
     expect(getDistractorCount(3)).toBe(4);
     expect(getDistractorCount(4)).toBe(4);
@@ -48,6 +48,14 @@ describe('letter-bank.ts — scaled distractors and alphabetical sorting (Tasks 
     }
   });
 
+  it('emits one tile per answer letter including duplicate letters ("ball" -> two "l" tiles) and supports distractor override (Task 13.5)', () => {
+    const bank = buildLetterBank('ball', { distractorsOverride: 2 });
+    const lTiles = bank.filter((t) => t.letter === 'l');
+    expect(lTiles).toHaveLength(2);
+    expect(new Set(lTiles.map((t) => t.id)).size).toBe(2);
+    expect(bank.filter((t) => t.isDistractor)).toHaveLength(2);
+  });
+
   it('arranges tiles in strict alphabetical order for AlphabetKeyboard (Task 6.4)', () => {
     const bank = buildLetterBank('dog');
     const sorted = sortTilesAlphabetically(bank);
@@ -56,4 +64,3 @@ describe('letter-bank.ts — scaled distractors and alphabetical sorting (Tasks 
     }
   });
 });
-

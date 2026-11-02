@@ -4,6 +4,8 @@ export interface LetterTile {
   id: string;
   letter: string;
   isDistractor: boolean;
+  /** Answer character index (0..word.length-1) when isDistractor is false */
+  answerIndex?: number;
 }
 
 /**
@@ -19,24 +21,37 @@ export function getDistractorCount(wordLength: number): number {
 }
 
 /**
- * Builds the letter bank from the answer's required letters plus scaled distractors
- * drawn exclusively from letters not in the answer, then shuffles the bank.
+ * Builds the letter bank from the answer's required letters (duplicates included, e.g. "ball" -> two "l" tiles)
+ * plus scaled distractors drawn exclusively from letters not in the answer, then shuffles the bank (Tasks 6.1, 6.2, 13.5).
  */
 export function buildLetterBank(
   word: string,
   options?: {
     skipFirstLetter?: boolean;
+    distractorsOverride?: number;
     randomFn?: () => number;
   }
 ): LetterTile[] {
   const normalized = word.trim().toLowerCase();
   const rand = options?.randomFn ?? Math.random;
-  const distractorCount = getDistractorCount(normalized.length);
+  const distractorCount =
+    typeof options?.distractorsOverride === 'number'
+      ? Math.max(0, options.distractorsOverride)
+      : getDistractorCount(normalized.length);
 
   const fullWordLetters = normalized.split('');
-  const activeAnswerLetters = options?.skipFirstLetter
-    ? fullWordLetters.slice(1)
-    : fullWordLetters;
+  const answerTiles: LetterTile[] = [];
+  fullWordLetters.forEach((letter, idx) => {
+    if (options?.skipFirstLetter && idx === 0) {
+      return;
+    }
+    answerTiles.push({
+      id: `ans-${idx}-${letter}`,
+      letter,
+      isDistractor: false,
+      answerIndex: idx,
+    });
+  });
 
   const uniqueWordLetters = new Set(fullWordLetters);
   const candidateDistractors = ALPHABET.filter((ch) => !uniqueWordLetters.has(ch));
@@ -51,11 +66,7 @@ export function buildLetterBank(
   const chosenDistractors = poolCopy.slice(0, distractorCount);
 
   const tiles: LetterTile[] = [
-    ...activeAnswerLetters.map((letter, idx) => ({
-      id: `ans-${idx}-${letter}`,
-      letter,
-      isDistractor: false,
-    })),
+    ...answerTiles,
     ...chosenDistractors.map((letter, idx) => ({
       id: `dist-${idx}-${letter}`,
       letter,
@@ -73,9 +84,12 @@ export function buildLetterBank(
 }
 
 /**
- * Arranges a letter bank in alphabetical order for the on-screen keyboard (PRD 4.3 #19).
+ * Arranges a letter bank in alphabetical order for the on-screen keyboard (PRD 4.2 #20).
  */
 export function sortTilesAlphabetically(tiles: LetterTile[]): LetterTile[] {
-  return [...tiles].sort((a, b) => a.letter.localeCompare(b.letter));
+  return [...tiles].sort((a, b) => {
+    const cmp = a.letter.localeCompare(b.letter);
+    if (cmp !== 0) return cmp;
+    return a.id.localeCompare(b.id);
+  });
 }
-

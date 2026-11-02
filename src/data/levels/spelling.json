@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Animal Safari",
+    "icon": "pets",
+    "wordLength": { "min": 3, "max": 3 },
+    "difficulty": ["easy"],
+    "questionsPerRound": 10,
+    "prefillFirstLetter": true,
+    "pointsPerWord": 10,
+    "wordsToAdvance": 10
+  },
+  {
+    "id": 2,
+    "name": "Garden Friends",
+    "icon": "local_florist",
+    "wordLength": { "min": 3, "max": 4 },
+    "difficulty": ["easy"],
+    "questionsPerRound": 10,
+    "prefillFirstLetter": false,
+    "pointsPerWord": 15,
+    "wordsToAdvance": 10
+  },
+  {
+    "id": 3,
+    "name": "Ocean Explorer",
+    "icon": "sailing",
+    "wordLength": { "min": 4, "max": 5 },
+    "difficulty": ["easy", "medium"],
+    "questionsPerRound": 10,
+    "prefillFirstLetter": false,
+    "pointsPerWord": 20,
+    "wordsToAdvance": 10
+  },
+  {
+    "id": 4,
+    "name": "Jungle Trek",
+    "icon": "forest",
+    "wordLength": { "min": 5, "max": 6 },
+    "difficulty": ["medium"],
+    "questionsPerRound": 10,
+    "prefillFirstLetter": false,
+    "pointsPerWord": 25,
+    "wordsToAdvance": 10
+  },
+  {
+    "id": 5,
+    "name": "Space Adventure",
+    "icon": "rocket_launch",
+    "wordLength": { "min": 6, "max": 12 },
+    "difficulty": ["medium", "hard"],
+    "questionsPerRound": 10,
+    "prefillFirstLetter": false,
+    "pointsPerWord": 30,
+    "wordsToAdvance": 10
+  }
+]
+

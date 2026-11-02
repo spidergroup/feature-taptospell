@@ -16,6 +16,8 @@ jobs:
       - run: npm ci
       - name: Validate Word Lists & Images
         run: npm run validate:words
+      - name: Validate Spelling Levels
+        run: npm run validate:levels
       - name: Validate Sound Sets
         run: npm run validate:sounds
       - name: Apply local D1 migrations

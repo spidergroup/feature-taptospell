@@ -1,14 +1,14 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { handleGetLink, handlePostLinks } from './routes/api/links';
+import { handleGetLink, handlePatchLinkLabel, handlePostLinks } from './routes/api/links';
 import { handlePostProgress } from './routes/api/progress';
+import { handlePostSync } from './routes/api/sync';
 import { expireInactiveLinks, TWELVE_MONTHS_MS } from './workers/expire-links';
 import { HomePage } from './routes/index';
 import { PracticeRoute, InvalidLinkScreen } from './routes/$slug';
 import { isValidSlug } from './lib/slug';
-import { getParentProgressSummary, getProgressForLink } from './lib/progress';
+import { getAuthoritativeLinkState, getParentProgressSummary } from './lib/sync';
 import { checkRateLimit } from './lib/rate-limit';
-import type { GradeNumber } from './data/words/schema';
 
 export interface Env {
   DB: D1Database;
@@ -26,11 +26,12 @@ function renderHtmlDocument(
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <title>${title}</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; background: #FAF6EE; color: #1D3537; }
+    html, body { width: 100%; margin: 0; padding: 0; min-height: 100%; }
+    body { overscroll-behavior: none; background: #f0f3ff; color: #121c2c; font-family: "Nunito Sans", system-ui, -apple-system, sans-serif; }
   </style>
 </head>
 <body>
@@ -58,12 +59,26 @@ export default {
 
     if (
       (pathname === '/api/links' || pathname.startsWith('/api/links/')) &&
+      request.method === 'PATCH'
+    ) {
+      const slug = pathname.startsWith('/api/links/')
+        ? pathname.slice('/api/links/'.length)
+        : undefined;
+      return handlePatchLinkLabel(request, env.DB, slug);
+    }
+
+    if (
+      (pathname === '/api/links' || pathname.startsWith('/api/links/')) &&
       request.method === 'GET'
     ) {
       const slug = pathname.startsWith('/api/links/')
         ? pathname.slice('/api/links/'.length)
         : undefined;
       return handleGetLink(request, env.DB, slug);
+    }
+
+    if (pathname === '/api/sync' && request.method === 'POST') {
+      return handlePostSync(request, env.DB);
     }
 
     if (pathname === '/api/progress' && request.method === 'POST') {
@@ -110,18 +125,9 @@ export default {
         );
       }
 
-      const row = await env.DB.prepare(
-        'SELECT slug, grade, label, last_active FROM links WHERE slug = ? LIMIT 1'
-      )
-        .bind(potentialSlug)
-        .first<{
-          slug: string;
-          grade: GradeNumber;
-          label: string | null;
-          last_active: number;
-        }>();
+      const state = await getAuthoritativeLinkState(env.DB, potentialSlug);
 
-      if (!row || Date.now() - row.last_active >= TWELVE_MONTHS_MS) {
+      if (!state || Date.now() - state.lastActive >= TWELVE_MONTHS_MS) {
         const notFoundHtml = renderToString(React.createElement(InvalidLinkScreen));
         return renderHtmlDocument(
           'TapToSpell — Link Not Found',
@@ -132,7 +138,6 @@ export default {
       }
 
       const isParent = url.searchParams.has('parent');
-      const modeParam = url.searchParams.get('mode') === 'write' ? 'write' : 'read';
 
       if (isParent) {
         const summary = await getParentProgressSummary(env.DB, potentialSlug);
@@ -150,24 +155,26 @@ export default {
         });
       }
 
-      const progress = await getProgressForLink(env.DB, potentialSlug);
       const linkData = {
-        slug: row.slug,
-        grade: row.grade,
-        label: row.label,
-        progress,
+        slug: state.slug,
+        grade: state.grade,
+        label: state.label,
+        points: state.points,
+        currentLevel: state.currentLevel,
+        progress: state.progress,
       };
+      // Version 1.0 always starts spelling ('write') mode per PRD 4.12
       const html = renderToString(
         React.createElement(PracticeRoute, {
           slug: potentialSlug,
-          initialMode: modeParam,
+          initialMode: 'write',
           linkData,
         })
       );
       return renderHtmlDocument('TapToSpell — Practice', html, {
         page: 'practice',
         slug: potentialSlug,
-        initialMode: modeParam,
+        initialMode: 'write',
         linkData,
       });
     }

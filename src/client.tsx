@@ -38,7 +38,7 @@ if (rootEl) {
     element = (
       <PracticeRoute
         slug={state.slug}
-        initialMode={state.initialMode ?? 'read'}
+        initialMode="write"
         linkData={state.linkData}
       />
     );
@@ -52,4 +52,3 @@ if (rootEl) {
     createRoot(rootEl).render(element);
   }
 }
-

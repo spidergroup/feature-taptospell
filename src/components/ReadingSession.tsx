@@ -15,7 +15,10 @@ export interface ReadingSessionProps {
 }
 
 /**
- * Reading mode UI (Screen 3 mockup — Tasks 5.3, 7.11, 7.13).
+ * Reading mode UI — ⏸ VERSION 2.0 (Deferred from version 1.0 per PRD 4.12 & Task 17.3).
+ * Kept compiling and tested in the repository behind `READING_MODE_ENABLED = false`,
+ * and not reachable from any version 1.0 route.
+ *
  * Displays one word at a time, large and centred, with a thin fill-only progress bar
  * and mute toggle. No back button, no menu, no numeric score.
  */

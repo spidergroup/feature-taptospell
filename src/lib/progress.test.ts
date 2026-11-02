@@ -141,16 +141,24 @@ describe('progress.ts & session completion / parent view (Task 8.0)', () => {
           slug: 'k7m2xq4rvb',
           grade: 3,
           label: 'Jimmy',
+          points: 120,
+          currentLevel: 2,
+          currentLevelName: 'Garden Friends',
           totalGradeWords: 26,
           masteredCount: 10,
           remainingCount: 16,
           lastPractisedAt: Date.now(),
+          lastSyncedAt: Date.now(),
           workingOnWords: ['because', 'their'],
+          neededHintsWords: ['clock'],
         },
       })
     );
     expect(parentHtml).toContain('Jimmy — 2nd Grade');
     expect(parentHtml).toContain('10 of 26 words mastered');
     expect(parentHtml).toContain('Copy link');
+    expect(parentHtml).toContain('Level 2 • Garden Friends');
+    expect(parentHtml).toContain('120 Stars');
+    expect(parentHtml).toContain('clock');
   });
 });

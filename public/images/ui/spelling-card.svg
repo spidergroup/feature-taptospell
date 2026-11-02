@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="24" fill="#cde5ff"/>
+  <rect x="14" y="56" width="38" height="38" rx="10" fill="#ffb800"/>
+  <text x="33" y="83" text-anchor="middle" font-family="Rubik, sans-serif" font-weight="800" font-size="24" fill="#271900">C</text>
+  <rect x="44" y="28" width="38" height="38" rx="10" fill="#04a8ff"/>
+  <text x="63" y="55" text-anchor="middle" font-family="Rubik, sans-serif" font-weight="800" font-size="24" fill="#ffffff">A</text>
+  <rect x="68" y="60" width="38" height="38" rx="10" fill="#d3b9ff"/>
+  <text x="87" y="87" text-anchor="middle" font-family="Rubik, sans-serif" font-weight="800" font-size="24" fill="#270058">T</text>
+</svg>
+

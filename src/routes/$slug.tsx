@@ -1,21 +1,35 @@
-import React, { useMemo, useState } from 'react';
-import { ReadingSession } from '../components/ReadingSession';
-import { WritingSession } from '../components/WritingSession';
+import React, { useEffect, useMemo, useState } from 'react';
+import { SpellingSession } from '../components/SpellingSession';
 import { CelebrationScreen } from '../components/CelebrationScreen';
 import { ParentView } from '../components/ParentView';
-import { ProgressBar } from '../components/ProgressBar';
+import { LinkHome } from '../components/LinkHome';
+import { ShareBanner } from '../components/ShareBanner';
 import {
   getWordsForGrade,
-  selectSessionWords,
+  selectSpellingLevelWords,
   type PracticeMode,
   type WordProgressStatus,
 } from '../lib/words';
 import {
   clearMidSessionState,
+  loadDeviceState,
   loadMidSessionState,
+  loadPerLinkState,
+  markShareBannerShown,
   saveMidSessionState,
+  savePerLinkState,
+  type PerLinkLocalState,
   type StorageLike,
 } from '../lib/local-state';
+import {
+  flushPendingRounds,
+  flushPendingRoundsWithBeacon,
+  generateRoundId,
+  mergeServerStateWithPending,
+  queueCompletedRoundLocally,
+  type AuthoritativeLinkState,
+} from '../lib/sync';
+import { computeNextSpellingLevel, getSpellingLevelConfig } from '../lib/levels';
 import type { ParentProgressSummary, SessionItemResult } from '../lib/progress';
 import type { GradeNumber } from '../data/words/schema';
 
@@ -23,12 +37,15 @@ export interface PracticeLinkData {
   slug: string;
   grade: GradeNumber;
   label: string | null;
+  points?: number;
+  currentLevel?: number;
   progress: WordProgressStatus[];
 }
 
 export interface PracticeRouteProps {
   slug: string;
   isParentView?: boolean;
+  /** Version 1.0 always runs spelling ('write') mode per PRD 4.12 & Task 17.2 */
   initialMode?: PracticeMode;
   linkData?: PracticeLinkData | null;
   parentSummary?: ParentProgressSummary | null;
@@ -37,37 +54,160 @@ export interface PracticeRouteProps {
 }
 
 /**
- * Practice page at `/{slug}` (Tasks 5.5, 5.6, 8.3, 8.4, 8.5, 8.10).
- * - If `?parent` is present, renders `ParentView`.
- * - If slug is invalid or expired, renders a friendly message with a link to create a new one.
- * - Otherwise starts practice immediately — no splash screen, no start button, no interstitial.
+ * Practice page at `/{slug}` (PRD 4.1, 4.2, 4.6, 4.7, 4.8, 4.12; Tasks 11.7, 12.5, 13.9, 16.5, 16.6, 17.2).
+ * - If `?parent` is present, renders `ParentView` (and refreshes fresh server state on mount).
+ * - If slug is invalid or expired, renders `InvalidLinkScreen`.
+ * - Otherwise starts a spelling session immediately — rendering from local state first when available
+ *   and merging authoritative server state in the background.
+ * - Shows `ShareBanner` once over the loaded game ONLY on the device that created the link.
  */
 export function PracticeRoute({
   slug,
   isParentView = false,
-  initialMode = 'read',
   linkData,
   parentSummary,
   storage,
   onPersistSessionBatch,
 }: PracticeRouteProps) {
-  const [mode, setMode] = useState<PracticeMode>(initialMode);
-  const [progressList, setProgressList] = useState<WordProgressStatus[]>(
-    () => linkData?.progress ?? []
+  // Version 1.0 is spelling-only: always 'write' mode
+  const mode: PracticeMode = 'write';
+
+  const initialPerLinkState = useMemo((): PerLinkLocalState | null => {
+    const cached = loadPerLinkState(slug, storage);
+    if (cached) return cached;
+    if (!linkData) return null;
+    return {
+      version: 1,
+      slug: linkData.slug,
+      grade: linkData.grade,
+      label: linkData.label,
+      points: linkData.points ?? 0,
+      currentLevel: linkData.currentLevel ?? 1,
+      progress: linkData.progress.map((p) => ({
+        word: p.word,
+        mode: p.mode,
+        attempts: p.attempts,
+        hints_used: p.hints_used ?? 0,
+        mastered_at: p.mastered_at,
+      })),
+      pendingRounds: [],
+      lastSyncedAt: Date.now(),
+    };
+  }, [slug, linkData, storage]);
+
+  const [linkState, setLinkState] = useState<PerLinkLocalState | null>(
+    initialPerLinkState
+  );
+  const [liveParentSummary, setLiveParentSummary] = useState<ParentProgressSummary | null>(
+    parentSummary ?? null
   );
   const [phase, setPhase] = useState<'practising' | 'celebration' | 'all-done'>('practising');
   const [roundCounter, setRoundCounter] = useState(0);
+  const [lastRoundPoints, setLastRoundPoints] = useState(0);
+  const [leveledUpTo, setLeveledUpTo] = useState<number | null>(null);
+
+  const [showShareBanner, setShowShareBanner] = useState<boolean>(() => {
+    const device = loadDeviceState(storage);
+    const entry = device.recentLinks.find((l) => l.slug === slug);
+    return Boolean(entry && entry.createdHere && !entry.shareBannerShown);
+  });
+
+  // Background refresh from server + online/pagehide listeners for local-first sync (Tasks 16.5, 16.6, 16.9)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (isParentView) {
+      fetch(`/api/links/${slug}?parent`)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((fresh) => {
+          if (fresh) setLiveParentSummary(fresh as ParentProgressSummary);
+        })
+        .catch(() => {});
+      return;
+    }
+
+    // Flush any pending offline rounds first, then fetch latest server state and merge
+    flushPendingRounds(slug, { storage })
+      .then(() => fetch(`/api/links/${slug}`))
+      .then((res) => (res.ok ? res.json() : null))
+      .then((serverData) => {
+        if (!serverData) return;
+        const s = serverData as {
+          slug: string;
+          grade: GradeNumber;
+          label: string | null;
+          points?: number;
+          currentLevel?: number;
+          last_active?: number;
+          progress?: Array<{
+            word: string;
+            mode: PracticeMode;
+            attempts: number;
+            hints_used?: number;
+            mastered_at: number | null;
+          }>;
+        };
+        const authoritative: AuthoritativeLinkState = {
+          slug: s.slug,
+          grade: s.grade,
+          label: s.label ?? null,
+          points: s.points ?? 0,
+          currentLevel: s.currentLevel ?? 1,
+          lastActive: s.last_active ?? Date.now(),
+          progress: (s.progress ?? []).map((p) => ({
+            word: p.word,
+            mode: p.mode,
+            attempts: p.attempts,
+            hints_used: p.hints_used ?? 0,
+            mastered_at: p.mastered_at,
+          })),
+        };
+        const merged = mergeServerStateWithPending(
+          authoritative,
+          loadPerLinkState(slug, storage),
+          new Set(),
+          storage
+        );
+        setLinkState(merged);
+      })
+      .catch(() => {});
+
+    const handleOnline = () => {
+      flushPendingRounds(slug, { storage }).then((updated) => {
+        if (updated) setLinkState(updated);
+      });
+    };
+
+    const handleVisibilityOrHide = () => {
+      if (document.visibilityState === 'hidden') {
+        flushPendingRoundsWithBeacon(slug, storage);
+      }
+    };
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('pagehide', handleVisibilityOrHide);
+    document.addEventListener('visibilitychange', handleVisibilityOrHide);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('pagehide', handleVisibilityOrHide);
+      document.removeEventListener('visibilitychange', handleVisibilityOrHide);
+    };
+  }, [slug, isParentView, storage]);
 
   if (isParentView) {
-    if (!parentSummary) {
+    if (!liveParentSummary) {
       return <InvalidLinkScreen />;
     }
-    return <ParentView summary={parentSummary} />;
+    return <ParentView summary={liveParentSummary} />;
   }
 
-  if (!linkData) {
+  if (!linkState) {
     return <InvalidLinkScreen />;
   }
+
+  const currentLevel = linkState.currentLevel ?? 1;
+  const levelConfig = getSpellingLevelConfig(currentLevel);
 
   const savedMidSession = useMemo(
     () => loadMidSessionState(slug, mode, storage),
@@ -75,10 +215,14 @@ export function PracticeRoute({
   );
 
   const sessionWords = useMemo(() => {
-    const selected = selectSessionWords(linkData.grade, mode, progressList);
+    const selected = selectSpellingLevelWords(
+      linkState.grade,
+      levelConfig,
+      linkState.progress
+    );
     if (savedMidSession && savedMidSession.words.length === selected.length) {
       const byWord = new Map(
-        getWordsForGrade(linkData.grade, mode).map((w) => [w.word, w])
+        getWordsForGrade(linkState.grade, mode).map((w) => [w.word, w])
       );
       const restored = savedMidSession.words
         .map((w, idx) => {
@@ -86,7 +230,8 @@ export function PracticeRoute({
           if (!entry) return null;
           return {
             ...entry,
-            prefillFirstLetter: savedMidSession.prefillFlags?.[idx] ?? false,
+            prefillFirstLetter:
+              savedMidSession.prefillFlags?.[idx] ?? levelConfig.prefillFirstLetter,
           };
         })
         .filter((x): x is NonNullable<typeof x> => x !== null);
@@ -95,56 +240,86 @@ export function PracticeRoute({
       }
     }
     return selected;
-  }, [linkData.grade, mode, progressList, savedMidSession]);
+  }, [linkState.grade, levelConfig, linkState.progress, savedMidSession]);
 
-  const handleCompleteSession = async (results: SessionItemResult[]) => {
+  const handleDismissShareBanner = () => {
+    markShareBannerShown(slug, storage);
+    setShowShareBanner(false);
+  };
+
+  const handleCompleteRound = async (
+    results: SessionItemResult[],
+    roundPointsEarned: number
+  ) => {
     clearMidSessionState(slug, mode, storage);
 
     const nowMs = Date.now();
-    const updatedProgress = [...progressList];
-    for (const item of results) {
-      const existingIdx = updatedProgress.findIndex(
-        (p) => p.word === item.word && p.mode === item.mode
-      );
-      if (existingIdx >= 0) {
-        const prev = updatedProgress[existingIdx];
-        updatedProgress[existingIdx] = {
-          ...prev,
-          attempts: prev.attempts + item.attempts,
-          mastered_at: item.mastered ? prev.mastered_at ?? nowMs : prev.mastered_at,
-        };
-      } else {
-        updatedProgress.push({
-          word: item.word,
-          mode: item.mode,
-          attempts: item.attempts,
-          mastered_at: item.mastered ? nowMs : null,
-        });
+    // Calculate how many total mastered words the link will have after this round
+    const masteredSet = new Set(
+      linkState.progress.filter((p) => p.mastered_at !== null).map((p) => p.word)
+    );
+    for (const r of results) {
+      const hintsUsed = r.hintsUsed ?? 0;
+      if (r.mastered && hintsUsed === 0) {
+        masteredSet.add(r.word);
       }
     }
-    setProgressList(updatedProgress);
+
+    const advancement = computeNextSpellingLevel(currentLevel, masteredSet.size);
+    const roundId = generateRoundId();
+
+    const updatedLocal = queueCompletedRoundLocally(
+      linkState,
+      {
+        roundId,
+        slug,
+        level: currentLevel,
+        pointsEarned: roundPointsEarned,
+        nextLevel: advancement.nextLevel,
+        results: results.map((r) => ({
+          word: r.word,
+          mode: r.mode,
+          attempts: r.attempts,
+          hintsUsed: r.hintsUsed ?? 0,
+          mastered: r.mastered,
+        })),
+        completedAt: nowMs,
+      },
+      storage
+    );
+
+    setLinkState(updatedLocal);
+    setLastRoundPoints(roundPointsEarned);
+    setLeveledUpTo(advancement.advanced ? advancement.nextLevel : null);
     setPhase('celebration');
 
     try {
       if (onPersistSessionBatch) {
         await onPersistSessionBatch(slug, results);
       } else {
-        await fetch('/api/progress', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ slug, results }),
+        const synced = await flushPendingRounds(slug, {
+          storage,
+          initialState: updatedLocal,
         });
+        if (synced) {
+          setLinkState(synced);
+        }
       }
     } catch {
-      // Offline / transient network errors do not block the child's celebration screen
+      // Offline / transient network errors stay queued in pendingRounds
     }
   };
 
   if (phase === 'celebration') {
+    const nextLevelCfg = leveledUpTo ? getSpellingLevelConfig(leveledUpTo) : null;
     return (
       <CelebrationScreen
+        roundPointsEarned={lastRoundPoints}
+        leveledUpTo={leveledUpTo}
+        levelName={nextLevelCfg?.name}
         onOneMoreRound={() => {
           clearMidSessionState(slug, mode, storage);
+          setLeveledUpTo(null);
           setRoundCounter((c) => c + 1);
           setPhase('practising');
         }}
@@ -156,138 +331,65 @@ export function PracticeRoute({
   }
 
   if (phase === 'all-done') {
-    const totalWords = getWordsForGrade(linkData.grade).length;
+    const totalWords = getWordsForGrade(linkState.grade, 'write').length;
     const masteredWords = new Set(
-      progressList.filter((p) => p.mastered_at !== null).map((p) => p.word)
+      linkState.progress.filter((p) => p.mastered_at !== null).map((p) => p.word)
     ).size;
 
     return (
-      <main
-        data-testid="all-done-home"
-        style={{
-          minHeight: '100vh',
-          maxWidth: '420px',
-          margin: '0 auto',
-          padding: '32px 24px',
-          backgroundColor: '#FAF6EE',
-          color: '#1D3537',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '24px',
-          fontFamily: 'system-ui, -apple-system, sans-serif',
+      <LinkHome
+        label={linkState.label}
+        currentLevel={linkState.currentLevel}
+        points={linkState.points}
+        masteredWordsCount={masteredWords}
+        totalGradeWordsCount={totalWords}
+        onStartSpellingRound={() => {
+          setLeveledUpTo(null);
+          setRoundCounter((c) => c + 1);
+          setPhase('practising');
         }}
-      >
-        {linkData.label && (
-          <h1 style={{ fontSize: '2rem', fontWeight: 800, margin: 0 }}>{linkData.label}</h1>
-        )}
-        <div style={{ width: '100%' }}>
-          <ProgressBar completed={masteredWords} total={totalWords} />
-        </div>
-        <div style={{ display: 'flex', gap: '12px', width: '100%' }}>
-          <button
-            type="button"
-            data-testid="start-reading-button"
-            onClick={() => {
-              setMode('read');
-              setRoundCounter((c) => c + 1);
-              setPhase('practising');
-            }}
-            style={{
-              flex: 1,
-              minHeight: '56px',
-              borderRadius: '16px',
-              border: '2px solid #1E8A8A',
-              backgroundColor: '#FFFFFF',
-              color: '#1D3537',
-              fontSize: '1.1rem',
-              fontWeight: 700,
-              cursor: 'pointer',
-            }}
-          >
-            📖 Read
-          </button>
-          <button
-            type="button"
-            data-testid="start-writing-button"
-            onClick={() => {
-              setMode('write');
-              setRoundCounter((c) => c + 1);
-              setPhase('practising');
-            }}
-            style={{
-              flex: 1,
-              minHeight: '56px',
-              borderRadius: '16px',
-              border: '2px solid #1E8A8A',
-              backgroundColor: '#FFFFFF',
-              color: '#1D3537',
-              fontSize: '1.1rem',
-              fontWeight: 700,
-              cursor: 'pointer',
-            }}
-          >
-            🔤 Spell
-          </button>
-        </div>
-      </main>
-    );
-  }
-
-  if (mode === 'write') {
-    return (
-      <WritingSession
-        key={`write-${roundCounter}`}
-        words={sessionWords}
-        initialIndex={savedMidSession?.currentIndex ?? 0}
-        initialFilledLetters={savedMidSession?.filledLetters}
-        initialConsumedTileIds={savedMidSession?.consumedTileIds}
-        initialResults={savedMidSession?.results ?? []}
-        onStateChange={(next) => {
-          saveMidSessionState(
-            {
-              slug,
-              mode: 'write',
-              words: sessionWords.map((w) => w.word),
-              prefillFlags: sessionWords.map((w) => w.prefillFirstLetter),
-              currentIndex: next.currentIndex,
-              filledLetters: next.filledLetters,
-              consumedTileIds: next.consumedTileIds,
-              results: next.results,
-              startedAt: savedMidSession?.startedAt ?? Date.now(),
-            },
-            storage
-          );
-        }}
-        onComplete={handleCompleteSession}
       />
     );
   }
 
   return (
-    <ReadingSession
-      key={`read-${roundCounter}`}
+    <SpellingSession
+      key={`spell-${roundCounter}-${currentLevel}`}
       words={sessionWords}
+      level={levelConfig}
+      initialPoints={linkState.points}
       initialIndex={savedMidSession?.currentIndex ?? 0}
+      initialFilledLetters={savedMidSession?.filledLetters}
+      initialConsumedTileIds={savedMidSession?.consumedTileIds}
+      initialBoxes={savedMidSession?.boxes}
+      initialUsedHintBulbs={savedMidSession?.usedHintBulbs}
       initialResults={savedMidSession?.results ?? []}
-      onStateChange={(nextIndex, nextResults) => {
+      shareBanner={
+        showShareBanner ? (
+          <ShareBanner slug={slug} onDismiss={handleDismissShareBanner} />
+        ) : undefined
+      }
+      onBackToLinkHome={() => setPhase('all-done')}
+      onStateChange={(next) => {
         saveMidSessionState(
           {
             slug,
-            mode: 'read',
+            mode: 'write',
+            level: currentLevel,
             words: sessionWords.map((w) => w.word),
             prefillFlags: sessionWords.map((w) => w.prefillFirstLetter),
-            currentIndex: nextIndex,
-            filledLetters: [],
-            consumedTileIds: [],
-            results: nextResults,
+            currentIndex: next.currentIndex,
+            filledLetters: next.filledLetters,
+            consumedTileIds: next.consumedTileIds,
+            boxes: next.boxes,
+            usedHintBulbs: next.usedHintBulbs,
+            results: next.results,
             startedAt: savedMidSession?.startedAt ?? Date.now(),
           },
           storage
         );
       }}
-      onComplete={handleCompleteSession}
+      onComplete={handleCompleteRound}
     />
   );
 }
@@ -298,24 +400,31 @@ export function InvalidLinkScreen() {
       data-testid="invalid-link-screen"
       style={{
         minHeight: '100vh',
-        maxWidth: '420px',
+        maxWidth: '440px',
         margin: '0 auto',
         padding: '32px 24px',
-        backgroundColor: '#FAF6EE',
-        color: '#1D3537',
+        backgroundColor: '#f0f3ff',
+        color: '#121c2c',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
         gap: '20px',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
+        fontFamily: '"Nunito Sans", system-ui, -apple-system, sans-serif',
       }}
     >
-      <h1 style={{ fontSize: '1.75rem', fontWeight: 800, margin: 0 }}>
+      <h1
+        style={{
+          fontFamily: 'Rubik, system-ui, sans-serif',
+          fontSize: '28px',
+          fontWeight: 800,
+          margin: 0,
+        }}
+      >
         Practice link not found
       </h1>
-      <p style={{ color: '#375A5E', margin: 0, fontSize: '1.05rem' }}>
+      <p style={{ color: '#514532', margin: 0, fontSize: '17px', fontWeight: 600 }}>
         This practice link is not available. You can create a new practice link in seconds.
       </p>
       <a
@@ -325,14 +434,16 @@ export function InvalidLinkScreen() {
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          minHeight: '52px',
+          minHeight: '54px',
           padding: '12px 24px',
-          borderRadius: '16px',
-          backgroundColor: '#1E8A8A',
-          color: '#FFFFFF',
+          borderRadius: '18px',
+          backgroundColor: '#ffb800',
+          color: '#271900',
+          boxShadow: '0 6px 0 0 #6b4c00',
           textDecoration: 'none',
+          fontFamily: 'Rubik, system-ui, sans-serif',
           fontWeight: 700,
-          fontSize: '1.1rem',
+          fontSize: '18px',
         }}
       >
         Create a new practice link
@@ -342,4 +453,3 @@ export function InvalidLinkScreen() {
 }
 
 export default PracticeRoute;
-
