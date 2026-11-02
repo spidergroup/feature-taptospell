@@ -198,7 +198,7 @@ export function SpellingSession({
     if (spelled === target) {
       // PRD 4.5 #39-40: Correct answer sequence
       setIsCelebratingWord(true);
-      await soundManager.play('success');
+      void soundManager.play('success');
 
       const wordPoints = levelConfig.pointsPerWord;
       const nextRoundEarned = earnedPointsInRound + wordPoints;
@@ -262,7 +262,7 @@ export function SpellingSession({
       setAttemptsOnWord((prev) => prev + 1);
       setHadMissOnWord(true);
       setIsShakingBoxes(true);
-      await soundManager.play('retry');
+      void soundManager.play('retry');
 
       const keptConsumed = new Set(currentConsumedIds);
       const cleanedBoxes = completedBoxes.map((box) => {

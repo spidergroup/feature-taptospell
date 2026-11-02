@@ -34,9 +34,14 @@ export function selectNextSound(
   return pool[index];
 }
 
+export const DEFAULT_SOUND_SETS: Record<SoundSetName, string[]> = {
+  success: ['/sounds/success/chime-1.mp3', '/sounds/success/chime-2.mp3'],
+  retry: ['/sounds/retry/boing-1.mp3', '/sounds/retry/boing-2.mp3'],
+};
+
 /**
  * Discovers sound files present in `public/sounds/{success,retry}` via Vite's `import.meta.glob`
- * or an injected manifest, without hard-coding filenames (Task 7.5).
+ * or an injected manifest, falling back to default sound files when bundling (Task 7.5).
  */
 export function discoverSoundSets(
   globMap?: Record<string, unknown>
@@ -71,6 +76,12 @@ export function discoverSoundSets(
 
   sets.success.sort();
   sets.retry.sort();
+
+  // If no files were discovered dynamically (e.g. browser bundle built with esbuild), use standard sound sets
+  if (sets.success.length === 0 && sets.retry.length === 0) {
+    sets.success = [...DEFAULT_SOUND_SETS.success];
+    sets.retry = [...DEFAULT_SOUND_SETS.retry];
+  }
 
   // Cap at 5 files per set per PRD 4.9 #44-45
   sets.success = sets.success.slice(0, 5);
