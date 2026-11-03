@@ -114,11 +114,16 @@ describe('Revision 2 UI & Gameplay features (Tasks 10.0, 11.0, 13.0, 14.0, 15.0,
     expect(html).toContain('+15 pts');
     expect(html).toContain('Spell the 4-letter word!');
 
-    // 4-letter word 'fish' -> 3 light-bulb hint buttons (hint-bulb-0, hint-bulb-1, hint-bulb-2, no hint-bulb-3)
+    // 4-letter word 'fish' -> 3 light-bulb hint buttons (hint-bulb-0, hint-bulb-1, hint-bulb-2, no hint-bulb-3) with tooltips
     expect(html).toContain('hint-bulb-0');
     expect(html).toContain('hint-bulb-1');
     expect(html).toContain('hint-bulb-2');
     expect(html).not.toContain('hint-bulb-3');
+    expect(html).toContain('title="Tap for a hint (reveals a letter)"');
+
+    // Shows sound icon for words without a picture
+    expect(html).toContain('/images/ui/sound-icon.png');
+    expect(html).toContain('data-testid="word-sound-frame"');
 
     // One-time share banner shown over the loaded game
     expect(html).toContain('share-banner');

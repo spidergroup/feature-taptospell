@@ -102,6 +102,74 @@ export function SpellingSession({
   const effectivePrefill =
     currentItem?.prefillFirstLetter ?? levelConfig.prefillFirstLetter;
 
+  // Track whether the current word has an image on disk, or show/rotate the sound icon
+  const [hasImage, setHasImage] = useState<boolean>(() => {
+    if (!currentItem) return false;
+    return currentItem.word.toLowerCase() === 'cat';
+  });
+
+  const [showSoundIcon, setShowSoundIcon] = useState<boolean>(() => {
+    if (!currentItem) return true;
+    return currentItem.word.toLowerCase() !== 'cat';
+  });
+
+  // Verify image existence for current word
+  useEffect(() => {
+    if (!currentItem) {
+      setHasImage(false);
+      setShowSoundIcon(true);
+      return;
+    }
+
+    const wordLower = currentItem.word.toLowerCase();
+    const isKnown = wordLower === 'cat';
+    setHasImage(isKnown);
+    setShowSoundIcon(!isKnown);
+
+    if (typeof window !== 'undefined') {
+      const probe = new Image();
+      probe.onload = () => {
+        setHasImage(true);
+      };
+      probe.onerror = () => {
+        setHasImage(false);
+        setShowSoundIcon(true);
+      };
+      probe.src = `/images/words/${currentItem.word}.webp`;
+    }
+  }, [currentItem?.word]);
+
+  // If there's a picture, rotate between the picture and the sound icon every 3 seconds
+  useEffect(() => {
+    if (!hasImage) {
+      setShowSoundIcon(true);
+      return;
+    }
+
+    setShowSoundIcon(false);
+    const interval = setInterval(() => {
+      setShowSoundIcon((prev) => !prev);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [hasImage, currentItem?.word]);
+
+  const handleVisualFrameClick = () => {
+    if (hasImage) {
+      setShowSoundIcon((prev) => !prev);
+    }
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window && currentItem) {
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(currentItem.word);
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      } catch {
+        // Silent fallback
+      }
+    }
+  };
+
   const tiles = useMemo(() => {
     if (!currentItem) return [];
     return buildLetterBank(currentItem.word, {
@@ -557,8 +625,6 @@ export function SpellingSession({
             userSelect: 'none',
           }}
         >
-          {shareBanner}
-
           {/* Level Header & Tactile Striped Progress Tracker */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <div
@@ -710,6 +776,7 @@ export function SpellingSession({
 
             <div
               data-testid="word-illustration-frame"
+              onClick={handleVisualFrameClick}
               style={{
                 width: '100%',
                 backgroundColor: '#ffffff',
@@ -720,7 +787,15 @@ export function SpellingSession({
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                cursor: 'pointer',
               }}
+              title={
+                hasImage
+                  ? showSoundIcon
+                    ? 'Showing sound icon — click to show picture'
+                    : 'Showing picture — click to show sound icon'
+                  : 'Listen to the word'
+              }
             >
               <div
                 style={{
@@ -733,28 +808,80 @@ export function SpellingSession({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  position: 'relative',
                 }}
               >
-                <img
-                  src={`/images/words/${currentItem.word}.webp`}
-                  alt={currentItem.word}
-                  style={{
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    objectFit: 'contain',
-                  }}
-                />
+                {!hasImage || showSoundIcon ? (
+                  <div
+                    data-testid="word-sound-frame"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      transition: 'opacity 250ms ease, transform 250ms ease',
+                    }}
+                  >
+                    <img
+                      src="/images/ui/sound-icon.png"
+                      alt="Sound icon"
+                      data-testid="sound-icon-image"
+                      style={{
+                        width: '92px',
+                        height: '92px',
+                        objectFit: 'contain',
+                        filter: 'drop-shadow(0 4px 10px rgba(0, 99, 153, 0.16))',
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: 'Rubik, system-ui, sans-serif',
+                        fontSize: '13px',
+                        fontWeight: 700,
+                        color: '#006399',
+                        backgroundColor: '#ffffff',
+                        padding: '3px 12px',
+                        borderRadius: '9999px',
+                        boxShadow: '0 2px 0 0 #c4d5f2',
+                      }}
+                    >
+                      Listen
+                    </span>
+                  </div>
+                ) : (
+                  <div
+                    data-testid="word-picture-frame"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'opacity 250ms ease, transform 250ms ease',
+                    }}
+                  >
+                    <img
+                      src={`/images/words/${currentItem.word}.webp`}
+                      alt={currentItem.word}
+                      onError={() => {
+                        setHasImage(false);
+                        setShowSoundIcon(true);
+                      }}
+                      onLoad={() => setHasImage(true)}
+                      style={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
-
-          {/* Light-bulb Hint Row (word.length - 1 bulbs) */}
-          <HintBulbs
-            totalBulbs={hintCounts.totalBulbs}
-            usedBulbs={usedHintBulbs}
-            disabled={isCelebratingWord}
-            onUseHint={handleUseHint}
-          />
 
           {/* Interactive Letter Entry Slots */}
           <LetterBoxes
@@ -772,6 +899,17 @@ export function SpellingSession({
             onBackspace={handleBackspace}
             onReset={handleReset}
           />
+
+          {/* Light-bulb Hint Row (word.length - 1 bulbs) - moved below keyboard */}
+          <HintBulbs
+            totalBulbs={hintCounts.totalBulbs}
+            usedBulbs={usedHintBulbs}
+            disabled={isCelebratingWord}
+            onUseHint={handleUseHint}
+          />
+
+          {/* Parents Share This Practice Link With Your Child section - moved to bottom */}
+          {shareBanner}
         </div>
       </main>
     </div>

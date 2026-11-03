@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "Animal Safari",
+    "name": "Spelling Safari",
     "icon": "pets",
     "wordLength": { "min": 3, "max": 3 },
     "difficulty": ["easy"],
-    "questionsPerRound": 10,
-    "prefillFirstLetter": true,
+    "questionsPerRound": 3,
+    "prefillFirstLetter": false,
     "pointsPerWord": 10,
-    "wordsToAdvance": 10
+    "wordsToAdvance": 3
   },
   {
     "id": 2,
@@ -16,10 +16,10 @@
     "icon": "local_florist",
     "wordLength": { "min": 3, "max": 4 },
     "difficulty": ["easy"],
-    "questionsPerRound": 10,
+    "questionsPerRound": 5,
     "prefillFirstLetter": false,
     "pointsPerWord": 15,
-    "wordsToAdvance": 10
+    "wordsToAdvance": 5
   },
   {
     "id": 3,
@@ -27,10 +27,10 @@
     "icon": "sailing",
     "wordLength": { "min": 4, "max": 5 },
     "difficulty": ["easy", "medium"],
-    "questionsPerRound": 10,
+    "questionsPerRound": 7,
     "prefillFirstLetter": false,
     "pointsPerWord": 20,
-    "wordsToAdvance": 10
+    "wordsToAdvance": 7
   },
   {
     "id": 4,
@@ -38,10 +38,10 @@
     "icon": "forest",
     "wordLength": { "min": 5, "max": 6 },
     "difficulty": ["medium"],
-    "questionsPerRound": 10,
+    "questionsPerRound": 9,
     "prefillFirstLetter": false,
     "pointsPerWord": 25,
-    "wordsToAdvance": 10
+    "wordsToAdvance": 9
   },
   {
     "id": 5,
@@ -49,10 +49,10 @@
     "icon": "rocket_launch",
     "wordLength": { "min": 6, "max": 12 },
     "difficulty": ["medium", "hard"],
-    "questionsPerRound": 10,
+    "questionsPerRound": 11,
     "prefillFirstLetter": false,
     "pointsPerWord": 30,
-    "wordsToAdvance": 10
+    "wordsToAdvance": 11
   }
 ]
 

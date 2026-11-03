@@ -4,8 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
+    "dev": "npm run build:client && wrangler dev",
+    "build:client": "esbuild src/client.tsx --bundle --format=esm --minify --outfile=public/app.js",
+    "build": "npm run build:client",
     "start": "wrangler dev",
     "deploy": "wrangler deploy",
     "db:migrate:local": "wrangler d1 migrations apply taptospell --local",

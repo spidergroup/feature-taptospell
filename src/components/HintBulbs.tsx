@@ -40,6 +40,9 @@ export function HintBulbs({
       {Array.from({ length: totalBulbs }).map((_, idx) => {
         const isUsed = idx < usedBulbs;
         const isButtonDisabled = disabled || isUsed;
+        const tooltip = isUsed
+          ? 'Hint used'
+          : 'Tap for a hint (reveals a letter)';
 
         return (
           <button
@@ -47,6 +50,8 @@ export function HintBulbs({
             type="button"
             disabled={isButtonDisabled}
             aria-label={isUsed ? `Hint ${idx + 1} used` : `Use hint ${idx + 1}`}
+            title={tooltip}
+            data-tooltip={tooltip}
             data-testid={`hint-bulb-${idx}`}
             data-used={isUsed ? 'true' : 'false'}
             onClick={() => {

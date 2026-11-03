@@ -130,7 +130,7 @@ TapToSpell is a free web app that lets children aged 5–8 practise spelling wit
 
     | Level | Name | Word length | Difficulty | First letter pre-filled | Points per word |
     | --- | --- | --- | --- | --- | --- |
-    | 1 | Animal Safari | 3 | easy | yes | 10 |
+    | 1 | Spelling Safari | 3 | easy | yes | 10 |
     | 2 | Garden Friends | 3–4 | easy | no | 15 |
     | 3 | Ocean Explorer | 4–5 | easy, medium | no | 20 |
     | 4 | Jungle Trek | 5–6 | medium | no | 25 |

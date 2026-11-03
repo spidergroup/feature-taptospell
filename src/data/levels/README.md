@@ -7,7 +7,7 @@
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `1 \| 2 \| 3 \| 4 \| 5` | Level number (must contain all 5 levels 1..5). |
-| `name` | `string` | Friendly theme name displayed in the level pill badge (e.g. `"Animal Safari"`). |
+| `name` | `string` | Friendly theme name displayed in the level pill badge (e.g. `"Spelling Safari"`). |
 | `icon` | `string` | Material Symbols icon name shown alongside the level badge (e.g. `"pets"`). |
 | `wordLength` | `{ min: number, max: number }` | Inclusive minimum and maximum word lengths drawn at this level. |
 | `difficulty` | `Array<"easy" \| "medium" \| "hard">` | Difficulty tiers included at this level. |

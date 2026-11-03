@@ -12,8 +12,13 @@ describe('levels.ts — 5 spelling levels from JSON (Task 12.0)', () => {
     const levels = getSpellingLevels();
     expect(levels).toHaveLength(5);
     expect(levels.map((l) => l.id)).toEqual([1, 2, 3, 4, 5]);
-    expect(levels[0].name).toBe('Animal Safari');
-    expect(levels[0].prefillFirstLetter).toBe(true);
+    expect(levels[0].name).toBe('Spelling Safari');
+    expect(levels[0].prefillFirstLetter).toBe(false);
+    expect(levels[0].questionsPerRound).toBe(3);
+    expect(levels[1].questionsPerRound).toBe(5);
+    expect(levels[2].questionsPerRound).toBe(7);
+    expect(levels[3].questionsPerRound).toBe(9);
+    expect(levels[4].questionsPerRound).toBe(11);
     expect(levels[0].pointsPerWord).toBe(10);
     expect(levels[4].name).toBe('Space Adventure');
     expect(levels[4].pointsPerWord).toBe(30);
@@ -27,15 +32,15 @@ describe('levels.ts — 5 spelling levels from JSON (Task 12.0)', () => {
       advanced: false,
     });
 
-    // 9 mastered words (< 10 threshold) stays at level 1
-    expect(computeNextSpellingLevel(1, 9)).toEqual({
+    // 2 mastered words (< 3 threshold) stays at level 1
+    expect(computeNextSpellingLevel(1, 2)).toEqual({
       previousLevel: 1,
       nextLevel: 1,
       advanced: false,
     });
 
-    // Exactly at threshold (10 mastered words) advances from level 1 to level 2
-    expect(computeNextSpellingLevel(1, 10)).toEqual({
+    // Exactly at threshold (3 mastered words) advances from level 1 to level 2
+    expect(computeNextSpellingLevel(1, 3)).toEqual({
       previousLevel: 1,
       nextLevel: 2,
       advanced: true,
