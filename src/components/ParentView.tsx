@@ -105,7 +105,7 @@ export function ParentView({ summary, baseUrl, onSaveLabel }: ParentViewProps) {
         maxWidth: '480px',
         margin: '0 auto',
         padding: '28px 20px',
-        backgroundColor: '#f0f3ff',
+        backgroundColor: '#dfe7f7',
         color: '#121c2c',
         display: 'flex',
         flexDirection: 'column',

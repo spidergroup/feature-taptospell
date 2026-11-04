@@ -46,7 +46,7 @@ export function CelebrationScreen({
         maxWidth: '440px',
         margin: '0 auto',
         padding: '32px 24px',
-        backgroundColor: '#f0f3ff',
+        backgroundColor: '#dfe7f7',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

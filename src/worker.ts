@@ -31,7 +31,7 @@ function renderHtmlDocument(
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html, body { width: 100%; margin: 0; padding: 0; min-height: 100%; }
-    body { overscroll-behavior: none; background: #f0f3ff; color: #121c2c; font-family: "Nunito Sans", system-ui, -apple-system, sans-serif; }
+    body { overscroll-behavior: none; background: #dfe7f7; color: #121c2c; font-family: "Nunito Sans", system-ui, -apple-system, sans-serif; }
   </style>
 </head>
 <body>

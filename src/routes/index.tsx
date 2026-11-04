@@ -165,7 +165,7 @@ export function HomePage({
       data-testid="screen-home-page"
       style={{
         minHeight: '100vh',
-        backgroundColor: '#f0f3ff',
+        backgroundColor: '#dfe7f7',
         color: '#121c2c',
         fontFamily: '"Nunito Sans", system-ui, -apple-system, sans-serif',
         display: 'flex',

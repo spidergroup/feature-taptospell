@@ -498,7 +498,7 @@ export function SpellingSession({
       data-child-hints-used={String(childHintsUsedOnWord)}
       style={{
         minHeight: '100vh',
-        backgroundColor: '#f9f9ff',
+        backgroundColor: '#dfe7f7',
         color: '#121c2c',
         fontFamily: '"Nunito Sans", system-ui, -apple-system, sans-serif',
         display: 'flex',

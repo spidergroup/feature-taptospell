@@ -35,7 +35,7 @@ export function LinkHome({
         maxWidth: '440px',
         margin: '0 auto',
         padding: '32px 24px',
-        backgroundColor: '#f0f3ff',
+        backgroundColor: '#dfe7f7',
         color: '#121c2c',
         display: 'flex',
         flexDirection: 'column',
