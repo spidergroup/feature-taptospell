@@ -1,20 +1,29 @@
-# TapToSpell — Sound Generation Prompt List & Contextual Examples
+# TapToSpell — Sound & Image Animation Prompt List & Contextual Examples
 
-This document provides complete, copy-pasteable audio generation prompts for **all 130 words** in the TapToSpell curriculum, with **3 kid-friendly contextual example sentences** per word (designed for young learners ages 5–8), as well as audio prompts for all UI sound effects.
+This document provides complete, copy-pasteable audio generation prompts for **all 130 words** in the TapToSpell curriculum, **image & image-to-video animation prompts for all 60 picturable words** (plus UI illustrations), **3 kid-friendly contextual example sentences** per word (designed for young learners ages 5–8), and audio prompts for all UI sound effects.
 
 ## Quick Audio Specs
 - **Target Folder:** `public/sounds/words/{word}.mp3`
 - **Audio Format:** MP3, 44.1 kHz, 128 kbps, mono or stereo
 - **Spoken Voice Tone:** Friendly, warm, articulate female or male voice (US English), phonetically clear, ~1.0–1.5s for standalone words.
 
+## Quick Image & Animation Specs
+- **Source Static Images:** `public/images/words/{word}.webp` (512×512 px, 1:1 square)
+- **Animated Output Target:** Animated WebP (`.webp`) or looping MP4/WebM (`512×512`, 24–30 fps, 2.5–4.0s seamless loop)
+- **Master Image-to-Video Animation Prompt Template (Universal):**
+  > *"Subtle, playful 2D flat vector animation for a children's educational game. Keep the camera completely locked and stationary, and keep the solid warm pastel cream background completely static. Animate only the centered subject with a gentle, cheerful, seamless looping motion (2–3 seconds). Preserve crisp flat vector outlines, rounded shapes, and exact colors with no morphing, no extra objects, no camera zoom or pan, and no text or letters."*
+
 ---
 
-## Part 1: 60 Picturable Spelling Words
+## Part 1: 60 Picturable Spelling Words (Audio + Image + Animation Prompts)
 
 ### 1. **apple**
 - **File Path:** `public/sounds/words/apple.mp3`
+- **Image Path:** `public/images/words/apple.webp`
 - **Spoken Word:** "apple"
 - **Audio Prompt:** *"Say the word 'apple' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a shiny crisp red apple with a small green leaf."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the centered shiny red apple. The apple does a cheerful little squash-and-stretch bounce in place while its small green leaf wiggles PLAYFULLY back and forth and a tiny white shine glint twinkles on its skin. Locked stationary camera, static cream background, no morphing, no text."*
 - **3 Contextual Example Sentences:**
   1. *"I ate a sweet red apple for my afternoon snack."*
   2. *"An apple fell from the branch onto the grass."*
@@ -22,8 +31,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 2. **ball**
 - **File Path:** `public/sounds/words/ball.mp3`
+- **Image Path:** `public/images/words/ball.webp`
 - **Spoken Word:** "ball"
 - **Audio Prompt:** *"Say the word 'ball' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a bright colorful bouncing beach ball."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful beach ball gently bouncing up and down in the center of the frame with soft cartoon squash-and-stretch and a slight playful spin. Locked stationary camera, static cream background, crisp vector colors, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The children kicked the red soccer ball across the yard."*
   2. *"Can you throw the bouncy ball to me?"*
@@ -31,8 +43,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 3. **bear**
 - **File Path:** `public/sounds/words/bear.mp3`
+- **Image Path:** `public/images/words/bear.webp`
 - **Spoken Word:** "bear"
 - **Audio Prompt:** *"Say the word 'bear' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly cuddly brown teddy bear sitting upright."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly sitting brown bear. The bear blinks its warm eyes, wiggles its round ears happily, tilts its head slightly with a gentle smile, and waves one paw softly. Locked stationary camera, static cream background, no morphing, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The brown bear caught a fish in the cool river."*
   2. *"I sleep with my soft teddy bear every night."*
@@ -40,8 +55,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 4. **bed**
 - **File Path:** `public/sounds/words/bed.mp3`
+- **Image Path:** `public/images/words/bed.webp`
 - **Spoken Word:** "bed"
 - **Audio Prompt:** *"Say the word 'bed' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cozy wooden kid bed with a soft pillow and blanket."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cozy wooden bed. The fluffy pillow and soft blanket give a gentle, inviting puff and bounce as if freshly fluffed, returning smoothly to rest. Locked stationary camera, static cream background, crisp flat vector lines, no text."*
 - **3 Contextual Example Sentences:**
   1. *"I go to bed at 8 o'clock in the evening."*
   2. *"Please make your bed before going downstairs."*
@@ -49,8 +67,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 5. **bell**
 - **File Path:** `public/sounds/words/bell.mp3`
+- **Image Path:** `public/images/words/bell.webp`
 - **Spoken Word:** "bell"
 - **Audio Prompt:** *"Say the word 'bell' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a golden hand bell ringing softly."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the golden hand bell rocking rhythmically left and right as it rings, with the little clapper swinging inside and small curved motion lines pulsing on either side. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The school bell rings when morning class begins."*
   2. *"The golden bell on the door jingles when it opens."*
@@ -58,8 +79,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 6. **bird**
 - **File Path:** `public/sounds/words/bird.mp3`
+- **Image Path:** `public/images/words/bird.webp`
 - **Spoken Word:** "bird"
 - **Audio Prompt:** *"Say the word 'bird' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly blue songbird perched on a twig."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly blue songbird perched on a twig. The bird bobs its head cheerfully, flutters its wings twice, blinks, and opens its beak in a happy little chirp while its tail feathers flick gently. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"A blue bird sang a lovely song in the tree."*
   2. *"The mama bird built a nest for her babies."*
@@ -67,8 +91,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 7. **boat**
 - **File Path:** `public/sounds/words/boat.mp3`
+- **Image Path:** `public/images/words/boat.webp`
 - **Spoken Word:** "boat"
 - **Audio Prompt:** *"Say the word 'boat' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a small wooden sailboat floating on gentle ripples."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the small wooden sailboat gently rocking and bobbing on soft water ripples while its sail billows lightly in a gentle breeze. Locked stationary camera, static cream background, crisp vector shapes, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The small wooden boat sailed across the calm blue lake."*
   2. *"We wore life jackets before stepping onto the boat."*
@@ -76,8 +103,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 8. **book**
 - **File Path:** `public/sounds/words/book.mp3`
+- **Image Path:** `public/images/words/book.webp`
 - **Spoken Word:** "book"
 - **Audio Prompt:** *"Say the word 'book' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a colorful open picture book with blank pages."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful open picture book. A blank page gently flips over from right to left while the book gives a slight cheerful bounce. Locked stationary camera, static cream background, no text or letters on the pages."*
 - **3 Contextual Example Sentences:**
   1. *"Dad read an exciting story book before bedtime."*
   2. *"I borrowed a picture book about dinosaurs from the library."*
@@ -85,8 +115,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 9. **box**
 - **File Path:** `public/sounds/words/box.mp3`
+- **Image Path:** `public/images/words/box.webp`
 - **Spoken Word:** "box"
 - **Audio Prompt:** *"Say the word 'box' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly open cardboard toy box."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cardboard box. The box wiggles excitedly in place as its top flaps flutter open and closed slightly in a playful bounce. Locked stationary camera, static cream background, crisp vector lines, no text."*
 - **3 Contextual Example Sentences:**
   1. *"She packed her crayons into the colorful pencil box."*
   2. *"A surprise birthday present was hidden inside the big box."*
@@ -94,8 +127,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 10. **bread**
 - **File Path:** `public/sounds/words/bread.mp3`
+- **Image Path:** `public/images/words/bread.webp`
 - **Spoken Word:** "bread"
 - **Audio Prompt:** *"Say the word 'bread' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a fresh golden loaf of sliced bakery bread."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the warm golden loaf of sliced bread. Soft, curvy cartoon steam wisps rise gently above the loaf while the front slice leans forward slightly with a soft bouncy motion. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"We toasted two slices of warm wheat bread."*
   2. *"The sweet baker made fresh sourdough bread this morning."*
@@ -103,8 +139,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 11. **cake**
 - **File Path:** `public/sounds/words/cake.mp3`
+- **Image Path:** `public/images/words/cake.webp`
 - **Spoken Word:** "cake"
 - **Audio Prompt:** *"Say the word 'cake' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a birthday strawberry sponge cake with frosting."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the frosted birthday cake. The warm candle flame on top flickers and sways cheerfully while the cake does a gentle celebratory squash-and-stretch bounce. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"We blew out the candles on the birthday cake."*
   2. *"Grandma baked a delicious chocolate sponge cake."*
@@ -112,8 +151,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 12. **car**
 - **File Path:** `public/sounds/words/car.mp3`
+- **Image Path:** `public/images/words/car.webp`
 - **Spoken Word:** "car"
 - **Audio Prompt:** *"Say the word 'car' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cheerful rounded toy car."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cheerful rounded toy car idling in place. Its wheels spin smoothly, the car body bobs gently up and down on its suspension, and a tiny cute puff of air pops behind the tailpipe. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Dad parked the blue family car in the garage."*
   2. *"We buckled our seatbelts before the car started."*
@@ -121,8 +163,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 13. **cat**
 - **File Path:** `public/sounds/words/cat.mp3`
+- **Image Path:** `public/images/words/cat.webp`
 - **Spoken Word:** "cat"
 - **Audio Prompt:** *"Say the word 'cat' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly sitting cartoon cat."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly sitting cat. The cat blinks its big eyes slowly, twitches its ears and whiskers, and swishes its curved tail smoothly side to side. Locked stationary camera, static cream background, no morphing, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The orange cat purred happily in my warm lap."*
   2. *"Our friendly cat likes to chase little yarn balls."*
@@ -130,8 +175,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 14. **chair**
 - **File Path:** `public/sounds/words/chair.mp3`
+- **Image Path:** `public/images/words/chair.webp`
 - **Spoken Word:** "chair"
 - **Audio Prompt:** *"Say the word 'chair' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a sturdy wooden armchair with a soft cushion."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cozy wooden chair with a soft cushion. The chair rocks gently forward and back with a playful toy-like bounce while the seat cushion puffs up softly. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Please pull up a wooden chair to the kitchen table."*
   2. *"Grandpa sat back in his comfortable rocking chair."*
@@ -139,8 +187,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 15. **clock**
 - **File Path:** `public/sounds/words/clock.mp3`
+- **Image Path:** `public/images/words/clock.webp`
 - **Spoken Word:** "clock"
 - **Audio Prompt:** *"Say the word 'clock' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a classic circular wall clock showing 3 o'clock."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the round wall clock. The minute hand ticks forward with a crisp, playful bounce while the clock body gives a tiny rhythmic tick-tock tilt. Locked stationary camera, static cream background, no numbers or text."*
 - **3 Contextual Example Sentences:**
   1. *"The wall clock in the classroom shows nine o'clock."*
   2. *"The alarm clock buzzed loudly to wake us up."*
@@ -148,8 +199,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 16. **coat**
 - **File Path:** `public/sounds/words/coat.mp3`
+- **Image Path:** `public/images/words/coat.webp`
 - **Spoken Word:** "coat"
 - **Audio Prompt:** *"Say the word 'coat' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cozy warm yellow winter jacket coat with buttons."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cozy yellow winter coat. The sleeves wave gently outward in a friendly welcoming gesture and the coat sways lightly as if in a soft breeze. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Zip up your warm winter coat before stepping outside."*
   2. *"I hung my yellow rain coat on the hook by the door."*
@@ -157,8 +211,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 17. **corn**
 - **File Path:** `public/sounds/words/corn.mp3`
+- **Image Path:** `public/images/words/corn.webp`
 - **Spoken Word:** "corn"
 - **Audio Prompt:** *"Say the word 'corn' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a sweet golden yellow ear of corn on the cob."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the golden ear of corn. The green husk leaves peel open slightly and sway gently while a bright sparkle twinkles across the yellow kernels. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"We ate sweet yellow corn on the cob at the picnic."*
   2. *"Tall green corn stalks grew high in the summer field."*
@@ -166,8 +223,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 18. **cow**
 - **File Path:** `public/sounds/words/cow.mp3`
+- **Image Path:** `public/images/words/cow.webp`
 - **Spoken Word:** "cow"
 - **Audio Prompt:** *"Say the word 'cow' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cute spotted dairy cow standing in a grassy meadow."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cute spotted dairy cow. The cow blinks happily, flicks its ears, chews contentedly with a gentle jaw motion, and swishes its tail in the background. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The black and white cow chewed grass in the pasture."*
   2. *"The friendly cow gave fresh milk every morning."*
@@ -175,8 +235,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 19. **dog**
 - **File Path:** `public/sounds/words/dog.mp3`
+- **Image Path:** `public/images/words/dog.webp`
 - **Spoken Word:** "dog"
 - **Audio Prompt:** *"Say the word 'dog' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly happy golden puppy sitting down."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the happy golden puppy sitting down. The puppy wags its tail enthusiastically, perks its floppy ears up and down, blinks its friendly eyes, and pants happily with a cute pink tongue. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The playful golden dog wagged its tail with joy."*
   2. *"We take our friendly dog for a walk in the park."*
@@ -184,8 +247,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 20. **door**
 - **File Path:** `public/sounds/words/door.mp3`
+- **Image Path:** `public/images/words/door.webp`
 - **Spoken Word:** "door"
 - **Audio Prompt:** *"Say the word 'door' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a colorful welcoming front door with a brass doorknob."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful front door. The brass doorknob turns and the door swings slightly ajar to reveal a warm sunny glow, then gently closes back into place. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Please close the front door gently when you leave."*
   2. *"Someone knocked softly on the wooden bedroom door."*
@@ -193,8 +259,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 21. **drum**
 - **File Path:** `public/sounds/words/drum.mp3`
+- **Image Path:** `public/images/words/drum.webp`
 - **Spoken Word:** "drum"
 - **Audio Prompt:** *"Say the word 'drum' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a colorful marching snare drum with two wooden drumsticks."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful toy drum. The two wooden drumsticks alternate tapping the drumhead in a cheerful rhythm while the drum bounces slightly with each beat. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"He tapped a steady beat on the wooden marching drum."*
   2. *"The loud drum echoed throughout the school parade."*
@@ -202,8 +271,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 22. **duck**
 - **File Path:** `public/sounds/words/duck.mp3`
+- **Image Path:** `public/images/words/duck.webp`
 - **Spoken Word:** "duck"
 - **Audio Prompt:** *"Say the word 'duck' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly yellow rubber ducky swimming."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly yellow duck bobbing gently on small water ripples, flapping its little wing once, blinking, and opening its orange bill in a cheerful quack. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The yellow duck paddled across the sunny pond."*
   2. *"A mother duck led her fluffy ducklings in a line."*
@@ -211,8 +283,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 23. **egg**
 - **File Path:** `public/sounds/words/egg.mp3`
+- **Image Path:** `public/images/words/egg.webp`
 - **Spoken Word:** "egg"
 - **Audio Prompt:** *"Say the word 'egg' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a smooth speckled bird egg in a soft cup."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the smooth speckled egg wobbling PLAYFULLY side to side with a cute little rock-and-settle motion, staying whole and intact. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The blue robin laid a tiny speckled egg in the nest."*
   2. *"Dad fried an egg sunny-side up for Sunday breakfast."*
@@ -220,8 +295,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 24. **eye**
 - **File Path:** `public/sounds/words/eye.mp3`
+- **Image Path:** `public/images/words/eye.webp`
 - **Spoken Word:** "eye"
 - **Audio Prompt:** *"Say the word 'eye' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly cartoon eye looking gently forward."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly cartoon eye. The eye glances curiously to the left and right, returns to center, and gives a warm, cheerful slow blink. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Wink one eye if you know the secret answer."*
   2. *"The eagle has sharp vision and a keen watchful eye."*
@@ -229,8 +307,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 25. **farm**
 - **File Path:** `public/sounds/words/farm.mp3`
+- **Image Path:** `public/images/words/farm.webp`
 - **Spoken Word:** "farm"
 - **Audio Prompt:** *"Say the word 'farm' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a classic red barn with a white wooden fence."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the red farm barn. The rooftop weathervane spins gently, soft grass blades sway beside the white fence, and the barn doors give a welcoming little wiggle. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Roosters crowed early in the morning on the farm."*
   2. *"We picked juicy red apples at the local fruit farm."*
@@ -238,8 +319,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 26. **feet**
 - **File Path:** `public/sounds/words/feet.mp3`
+- **Image Path:** `public/images/words/feet.webp`
 - **Spoken Word:** "feet"
 - **Audio Prompt:** *"Say the word 'feet' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of cute cartoon feet wiggling toes."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the pair of cute cartoon feet tapping alternately in a happy rhythm while the little toes wiggle PLAYFULLY. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Put warm woolly socks on your cold feet."*
   2. *"We dipped our bare feet into the refreshing lake water."*
@@ -247,8 +331,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 27. **fish**
 - **File Path:** `public/sounds/words/fish.mp3`
+- **Image Path:** `public/images/words/fish.webp`
 - **Spoken Word:** "fish"
 - **Audio Prompt:** *"Say the word 'fish' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cheerful little orange goldfish swimming."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cheerful orange goldfish swimming in place. Its tail and side fins swish smoothly while two tiny blue water bubbles float upward and pop gently. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"An orange fish swam gracefully around the aquarium bowl."*
   2. *"We watched tiny silver fish dart through the clear pond."*
@@ -256,8 +343,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 28. **flower**
 - **File Path:** `public/sounds/words/flower.mp3`
+- **Image Path:** `public/images/words/flower.webp`
 - **Spoken Word:** "flower"
 - **Audio Prompt:** *"Say the word 'flower' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a blooming bright yellow sunflower with green leaves."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the bright yellow flower swaying gently from side to side on its green stem as its petals open slightly in a cheerful bloom motion. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"A bright yellow flower bloomed in the garden soil."*
   2. *"A fuzzy bumblebee landed on the fragrant purple flower."*
@@ -265,8 +355,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 29. **frog**
 - **File Path:** `public/sounds/words/frog.mp3`
+- **Image Path:** `public/images/words/frog.webp`
 - **Spoken Word:** "frog"
 - **Audio Prompt:** *"Say the word 'frog' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cute smiling green tree frog sitting on a lilypad."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the smiling green frog sitting on its lilypad. The frog blinks its big eyes, puffs its throat pouch out and in for a happy ribbit, and does a small bouncy hop right back onto the lilypad. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"A little green frog hopped onto a floating lily pad."*
   2. *"The frog caught a buzzing fly with its long tongue."*
@@ -274,8 +367,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 30. **garden**
 - **File Path:** `public/sounds/words/garden.mp3`
+- **Image Path:** `public/images/words/garden.webp`
 - **Spoken Word:** "garden"
 - **Audio Prompt:** *"Say the word 'garden' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a lush backyard raised vegetable garden with carrots and flowers."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the raised vegetable garden. The leafy carrot tops and colorful flowers sway gently in a warm breeze with a slight cheerful bounce. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"We planted juicy tomatoes and crisp carrots in the garden."*
   2. *"Bright red tulips blossomed all over the sunny garden."*
@@ -283,8 +379,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 31. **grass**
 - **File Path:** `public/sounds/words/grass.mp3`
+- **Image Path:** `public/images/words/grass.webp`
 - **Spoken Word:** "grass"
 - **Audio Prompt:** *"Say the word 'grass' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a patch of vibrant green spring lawn blades with morning dew."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the patch of vibrant green grass blades waving smoothly side to side in a gentle breeze while a tiny dewdrop sparkles. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The children ran barefoot across the soft green grass."*
   2. *"Morning dew sparkled brightly on the fresh lawn grass."*
@@ -292,8 +391,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 32. **hand**
 - **File Path:** `public/sounds/words/hand.mp3`
+- **Image Path:** `public/images/words/hand.webp`
 - **Spoken Word:** "hand"
 - **Audio Prompt:** *"Say the word 'hand' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a waving cartoon hand with palm open."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly open cartoon hand waving side to side in a warm hello gesture with five fingers intact. Locked stationary camera, static cream background, no extra fingers or morphing, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Wash your hand with warm water and soap before dinner."*
   2. *"She raised her hand to ask the teacher a question."*
@@ -301,8 +403,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 33. **hat**
 - **File Path:** `public/sounds/words/hat.mp3`
+- **Image Path:** `public/images/words/hat.webp`
 - **Spoken Word:** "hat"
 - **Audio Prompt:** *"Say the word 'hat' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a colorful cheerful sun hat."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful sun hat tipping upward slightly in a polite, playful hat-tip gesture while its ribbon flutters softly, then settling back down. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Wear your wide-brimmed sun hat on bright sunny days."*
   2. *"The playful wind blew my baseball hat right off my head."*
@@ -310,8 +415,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 34. **hill**
 - **File Path:** `public/sounds/words/hill.mp3`
+- **Image Path:** `public/images/words/hill.webp`
 - **Spoken Word:** "hill"
 - **Audio Prompt:** *"Say the word 'hill' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a gentle rolling green grassy hill under blue sky."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the rolling green grassy hill. Small tufts of grass on the hill sway gently in the breeze while a soft white cloud drifts slightly overhead and loops back. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"We rode our sleds quickly down the snowy white hill."*
   2. *"A solitary oak tree stood tall atop the grassy hill."*
@@ -319,8 +427,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 35. **horse**
 - **File Path:** `public/sounds/words/horse.mp3`
+- **Image Path:** `public/images/words/horse.webp`
 - **Spoken Word:** "horse"
 - **Audio Prompt:** *"Say the word 'horse' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a friendly galloping brown pony horse with a dark mane."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly brown pony horse trotting happily in place, nodding its head, blinking its warm eyes, and swishing its dark mane and tail. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The brown horse galloped swiftly across the open meadow."*
   2. *"She gently brushed the long mane of her pet horse."*
@@ -328,8 +439,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 36. **house**
 - **File Path:** `public/sounds/words/house.mp3`
+- **Image Path:** `public/images/words/house.webp`
 - **Spoken Word:** "house"
 - **Audio Prompt:** *"Say the word 'house' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cozy storybook cottage house with a chimney and garden."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cozy cottage house. Soft round puffs of white smoke float gently out of the chimney while a warm yellow glow pulses softly in the windows. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Our cozy brick house has a white fence and a porch."*
   2. *"Smoke rose gently from the chimney of the little house."*
@@ -337,8 +451,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 37. **leg**
 - **File Path:** `public/sounds/words/leg.mp3`
+- **Image Path:** `public/images/words/leg.webp`
 - **Spoken Word:** "leg"
 - **Audio Prompt:** *"Say the word 'leg' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cartoon child leg wearing a bright sneaker shoe."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cartoon leg bending slightly at the knee and tapping its bright sneaker foot cheerfully in place. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The athletic frog hopped using its strong back leg."*
   2. *"He stretched out each leg before running the school race."*
@@ -346,8 +463,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 38. **milk**
 - **File Path:** `public/sounds/words/milk.mp3`
+- **Image Path:** `public/images/words/milk.webp`
 - **Spoken Word:** "milk"
 - **Audio Prompt:** *"Say the word 'milk' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cold glass bottle of fresh milk with a paper straw."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the glass bottle of milk with a striped straw. The milk inside sloshes gently in a smooth wave while the straw bobs up and down slightly. Locked stationary camera, static cream background, no text or labels."*
 - **3 Contextual Example Sentences:**
   1. *"Pour a cold glass of fresh milk to drink with cookies."*
   2. *"The newborn kitten drank warm milk from a tiny saucer."*
@@ -355,8 +475,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 39. **nest**
 - **File Path:** `public/sounds/words/nest.mp3`
+- **Image Path:** `public/images/words/nest.webp`
 - **Spoken Word:** "nest"
 - **Audio Prompt:** *"Say the word 'nest' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cozy twig bird nest with three small eggs."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cozy twig bird nest. The three small eggs inside wiggle gently one after another while a small green leaf on the twig sways softly. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The robin built a sturdy nest out of twigs and grass."*
   2. *"Three small blue speckled eggs rested safely in the nest."*
@@ -364,8 +487,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 40. **paper**
 - **File Path:** `public/sounds/words/paper.mp3`
+- **Image Path:** `public/images/words/paper.webp`
 - **Spoken Word:** "paper"
 - **Audio Prompt:** *"Say the word 'paper' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a clean blank sheet of letter paper with curled corner."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the clean blank sheet of paper floating gently up and down while its curled corner flutters softly in a light breeze. Locked stationary camera, static cream background, completely blank paper with no text."*
 - **3 Contextual Example Sentences:**
   1. *"Draw a colorful rainbow on this clean sheet of white paper."*
   2. *"Fold the square craft paper neatly to create a paper airplane."*
@@ -373,8 +499,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 41. **pig**
 - **File Path:** `public/sounds/words/pig.mp3`
+- **Image Path:** `public/images/words/pig.webp`
 - **Spoken Word:** "pig"
 - **Audio Prompt:** *"Say the word 'pig' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cute friendly pink piglet."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the cute pink piglet. The piglet wiggles its round snout and floppy ears, blinks its happy eyes, and bounces its curly tail cheerfully. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"A playful pink pig rolled happily in the cool mud."*
   2. *"The hungry pig grunted contentedly at feeding time."*
@@ -382,8 +511,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 42. **rain**
 - **File Path:** `public/sounds/words/rain.mp3`
+- **Image Path:** `public/images/words/rain.webp`
 - **Spoken Word:** "rain"
 - **Audio Prompt:** *"Say the word 'rain' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a small fluffy gray raincloud with clean blue raindrops."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the fluffy cloud bobbing gently at the top while clean blue raindrops fall smoothly downward in a continuous repeating cycle. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Cool rain fell gently against the bedroom window glass."*
   2. *"Put on your waterproof boots so you can splash in the rain."*
@@ -391,8 +523,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 43. **ring**
 - **File Path:** `public/sounds/words/ring.mp3`
+- **Image Path:** `public/images/words/ring.webp`
 - **Spoken Word:** "ring"
 - **Audio Prompt:** *"Say the word 'ring' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a shiny golden ring with a small sparkling blue gem."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the golden ring with a blue gem. The ring tilts gently side to side while crisp 4-point star sparkles twinkle around the blue gem. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"She wore a shiny golden ring with a sparkling blue stone."*
   2. *"The children joined hands to form a big happy ring."*
@@ -400,8 +535,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 44. **seed**
 - **File Path:** `public/sounds/words/seed.mp3`
+- **Image Path:** `public/images/words/seed.webp`
 - **Spoken Word:** "seed"
 - **Audio Prompt:** *"Say the word 'seed' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a tiny sunflower seed sprouting a fresh green shoot in soil."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the seed in soil. The seed wiggles gently and its little green sprout leaves perk up and sway happily in a warm breeze. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Plant a tiny black seed into the rich dark soil."*
   2. *"With sunshine and water, the little seed will sprout."*
@@ -409,8 +547,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 45. **sheep**
 - **File Path:** `public/sounds/words/sheep.mp3`
+- **Image Path:** `public/images/words/sheep.webp`
 - **Spoken Word:** "sheep"
 - **Audio Prompt:** *"Say the word 'sheep' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a fluffy white woolly lamb sheep grazing."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the fluffy white sheep. Its woolly coat puffs and bounces softly while the sheep blinks, wiggles its ears, and nods its head happily. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The fluffy white sheep grazed calmly on the green hillside."*
   2. *"The farmer sheared warm wool from the gentle sheep."*
@@ -418,8 +559,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 46. **ship**
 - **File Path:** `public/sounds/words/ship.mp3`
+- **Image Path:** `public/images/words/ship.webp`
 - **Spoken Word:** "ship"
 - **Audio Prompt:** *"Say the word 'ship' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a grand wooden sailing explorer ship on ocean waters."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the wooden sailing ship rocking gently over smooth ocean waves as its large white sails billow and the small flag on top flutters in the wind. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The grand sailing ship ventured across the vast blue ocean."*
   2. *"Sailors raised the giant white sails of the wooden ship."*
@@ -427,8 +571,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 47. **shoe**
 - **File Path:** `public/sounds/words/shoe.mp3`
+- **Image Path:** `public/images/words/shoe.webp`
 - **Spoken Word:** "shoe"
 - **Audio Prompt:** *"Say the word 'shoe' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a cheerful red canvas sneaker shoe with white laces."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the red canvas sneaker shoe tapping its toe playfully in place with a bouncy hop while its white shoelace bows wiggle. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Tie the laces on your left sneaker shoe tightly."*
   2. *"I kicked off each shoe before stepping onto the carpet."*
@@ -436,8 +583,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 48. **snow**
 - **File Path:** `public/sounds/words/snow.mp3`
+- **Image Path:** `public/images/words/snow.webp`
 - **Spoken Word:** "snow"
 - **Audio Prompt:** *"Say the word 'snow' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of delicate symmetrical winter snowflakes falling."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the winter snowflakes rotating slowly and drifting gently downward with a soft swaying motion. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Soft white snow fell quietly from the winter sky all night."*
   2. *"We built a smiling snowman out of the fresh cold snow."*
@@ -445,8 +595,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 49. **song**
 - **File Path:** `public/sounds/words/song.mp3`
+- **Image Path:** `public/images/words/song.webp`
 - **Spoken Word:** "song"
 - **Audio Prompt:** *"Say the word 'song' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of floating whimsical colorful musical notes and clefs."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful musical notes bobbing, swaying, and dancing rhythmically in place with playful squash-and-stretch. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The choir sang a cheerful song for the school assembly."*
   2. *"A sweet morning songbird chirped a happy melody."*
@@ -454,8 +607,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 50. **stick**
 - **File Path:** `public/sounds/words/stick.mp3`
+- **Image Path:** `public/images/words/stick.webp`
 - **Spoken Word:** "stick"
 - **Audio Prompt:** *"Say the word 'stick' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a smooth natural fallen wooden tree branch with a small leaf."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the wooden stick doing a playful little rock back and forth while its single green leaf flutters gently. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The playful puppy fetched the wooden stick from the yard."*
   2. *"We toasted marshmallows over the campfire on a long stick."*
@@ -463,8 +619,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 51. **sun**
 - **File Path:** `public/sounds/words/sun.mp3`
+- **Image Path:** `public/images/words/sun.webp`
 - **Spoken Word:** "sun"
 - **Audio Prompt:** *"Say the word 'sun' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a smiling warm yellow cartoon sun with soft rays."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the smiling yellow cartoon sun. The outer sun rays rotate slowly in a circle while the sun blinks its friendly eyes and beams a warm smile. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"The bright golden sun rose over the eastern mountains."*
   2. *"Soak up the warm sunshine on this pleasant summer day."*
@@ -472,8 +631,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 52. **table**
 - **File Path:** `public/sounds/words/table.mp3`
+- **Image Path:** `public/images/words/table.webp`
 - **Spoken Word:** "table"
 - **Audio Prompt:** *"Say the word 'table' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a simple four-legged wooden dining table."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the sturdy four-legged wooden table doing a cheerful little toy-like squash-and-stretch bounce in place while a clean shine sweeps across the tabletop. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Set the plates, forks, and cups on the dining table."*
   2. *"We gathered around the kitchen table to eat dinner together."*
@@ -481,8 +643,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 53. **top**
 - **File Path:** `public/sounds/words/top.mp3`
+- **Image Path:** `public/images/words/top.webp`
 - **Spoken Word:** "top"
 - **Audio Prompt:** *"Say the word 'top' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a classic spinning wooden toy top."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful wooden toy top spinning smoothly on its point with a slight playful wobble. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Spin the colorful wooden top across the smooth kitchen floor."*
   2. *"Snow covered the very top of the highest mountain peak."*
@@ -490,8 +655,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 54. **toy**
 - **File Path:** `public/sounds/words/toy.mp3`
+- **Image Path:** `public/images/words/toy.webp`
 - **Spoken Word:** "toy"
 - **Audio Prompt:** *"Say the word 'toy' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a wooden toy spinning top and building blocks."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful wooden toys hopping and wiggling playfully in place in a cheerful little bounce sequence. Locked stationary camera, static cream background, no letters or numbers on the blocks."*
 - **3 Contextual Example Sentences:**
   1. *"She shared her favorite wooden train toy with her friend."*
   2. *"Put your building blocks back into the toy chest after play."*
@@ -499,8 +667,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 55. **tree**
 - **File Path:** `public/sounds/words/tree.mp3`
+- **Image Path:** `public/images/words/tree.webp`
 - **Spoken Word:** "tree"
 - **Audio Prompt:** *"Say the word 'tree' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a full green oak tree with a sturdy brown trunk."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the leafy green oak tree. Its rounded green canopy sways and rustles gently in a soft breeze while the sturdy brown trunk stays rooted in place. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"An ancient apple tree gave cool shade in the backyard."*
   2. *"Birds perched safely high up in the leafy branches of the tree."*
@@ -508,8 +679,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 56. **watch**
 - **File Path:** `public/sounds/words/watch.mp3`
+- **Image Path:** `public/images/words/watch.webp`
 - **Spoken Word:** "watch"
 - **Audio Prompt:** *"Say the word 'watch' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a colorful wrist watch with an analog face."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the colorful wrist watch. The hands on the watch face tick forward rhythmically while a glint of light shines across the round glass face. Locked stationary camera, static cream background, no text or numbers."*
 - **3 Contextual Example Sentences:**
   1. *"My dad glanced at his wrist watch to check the time."*
   2. *"We sat together on the hill to watch the sunset."*
@@ -517,8 +691,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 57. **water**
 - **File Path:** `public/sounds/words/water.mp3`
+- **Image Path:** `public/images/words/water.webp`
 - **Spoken Word:** "water"
 - **Audio Prompt:** *"Say the word 'water' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a sparkling clear drop of blue water creating gentle ripples."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the blue water droplet bouncing gently as concentric water rings ripple outward underneath in a smooth cycle. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Drink plenty of cool fresh water after playing outside."*
   2. *"Ripples formed on the surface of the clear blue water."*
@@ -526,8 +703,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 58. **wind**
 - **File Path:** `public/sounds/words/wind.mp3`
+- **Image Path:** `public/images/words/wind.webp`
 - **Spoken Word:** "wind"
 - **Audio Prompt:** *"Say the word 'wind' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of a gentle swirl of autumn wind with drifting leaves."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the swirling breeze lines flowing smoothly from left to right while two colorful leaves twirl and dance along the air current. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"A gentle breeze of cool wind rustled the autumn leaves."*
   2. *"The strong wind lifted the colorful kite high into the sky."*
@@ -535,8 +715,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 59. **window**
 - **File Path:** `public/sounds/words/window.mp3`
+- **Image Path:** `public/images/words/window.webp`
 - **Spoken Word:** "window"
 - **Audio Prompt:** *"Say the word 'window' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of an open bedroom window with sunny outdoor daylight."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the open bedroom window. Soft curtains on either side billow and sway gently in a fresh breeze while warm sunbeams shimmer through the frame. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Open the bedroom window to let in the fresh morning air."*
   2. *"Sunlight streamed brightly through the clean glass window."*
@@ -544,8 +727,11 @@ This document provides complete, copy-pasteable audio generation prompts for **a
 
 ### 60. **wood**
 - **File Path:** `public/sounds/words/wood.mp3`
+- **Image Path:** `public/images/words/wood.webp`
 - **Spoken Word:** "wood"
 - **Audio Prompt:** *"Say the word 'wood' clearly, gently, and with a warm, encouraging smile. Pause 100ms before and after."*
+- **Image Prompt:** *"Clean mobile-first web app illustration for young children, flat vector illustration style, soft rounded corners, generous whitespace, warm pastel palette of cream background with teal and coral accents, no gradients, no drop shadows, no clutter, no text or letters anywhere in the image. Single clear centered illustration of stacked natural campfire logs of split birch wood."*
+- **Animation Prompt:** *"2D flat vector seamless loop animation of the stacked wooden logs doing a gentle, sturdy bounce in place while a small green sprout leaf on the bark sways lightly. Locked stationary camera, static cream background, no text."*
 - **3 Contextual Example Sentences:**
   1. *"Dad stacked split birch wood beside the living room fireplace."*
   2. *"The antique dining table is crafted from solid oak wood."*
@@ -1204,3 +1390,16 @@ This document provides complete, copy-pasteable audio generation prompts for **a
    - **Prompt:** *"Subtle hollow cartoon woodblock bounce (0.5 seconds), warm playful rattle, friendly try-again indicator for preschool learners."*
 3. **`boing-5.mp3`**
    - **Prompt:** *"Bouncy gentle rubber band twang (0.5 seconds), bouncy cartoon spring sound, lighthearted and fun, non-threatening failure feedback."*
+
+---
+
+## Part 4: UI Illustrations Animation Prompts (`public/images/ui/`)
+
+1. **Barnaby Beaver Mascot (`public/images/ui/mascot-beaver.svg`)**
+   - **Animation Prompt:** *"2D flat vector seamless loop animation of Barnaby Beaver. The friendly cartoon beaver blinks its big warm eyes, wiggles its round ears, nods cheerfully with a welcoming smile showing its cute front teeth, and gives a gentle wave. Locked stationary camera, static background, no text."*
+2. **Spelling Safari Card (`public/images/ui/spelling-card.svg`)**
+   - **Animation Prompt:** *"2D flat vector seamless loop animation of the Spelling Safari card illustration. The letter tiles and safari elements bob gently in place with a playful squash-and-stretch bounce and twinkling stars. Locked stationary camera, crisp vector lines, no morphing."*
+3. **Sight Word Reader Card (`public/images/ui/reading-card.svg`)**
+   - **Animation Prompt:** *"2D flat vector seamless loop animation of the Sight Word Reader card illustration. The open storybook floats gently up and down while magical little stars twinkle softly around it. Locked stationary camera, crisp vector lines, no morphing."*
+4. **Sound Speaker Icon (`public/images/ui/sound-icon.png`)**
+   - **Animation Prompt:** *"2D flat vector seamless loop animation of the friendly speaker icon pulsing gently in rhythm as curved sound waves ripple outward and fade smoothly. Locked stationary camera, static background, no text."*
